@@ -1,6 +1,6 @@
 var phantom = require('phantom');
-var html = 'http://localhost:5555/logsTable.html';
-var file = 'output/logsTable_test.pdf';
+var html = 'http://localhost:5555/index.html';
+var file = 'output/test.pdf';
 
 
 
