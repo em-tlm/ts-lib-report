@@ -20,6 +20,8 @@ To generate pdf
 2. Enter command:
 
     node htmlToPdf.js
+    
+(Note: this generates 2 separate PDFs, charts.pdf and table.pdf, into output folder. The charts.pdf has the visual d3 charts, and the table.pdf has the events log table.)
 
 
 HTML pages for individual charts
