@@ -1,16 +1,14 @@
 # pdf-module
 
-##To view webpage
-
 1. Install nodejs and npm
 
 2. Enter commands:
+    
+    node app.js
 
-    npm install
+##To view webpage
 
-    npm start
-
-3. Visit localhost:5555/jank.html
+1. Visit localhost:5555/jank.html
 
 
 ##To generate pdf
