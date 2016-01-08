@@ -1,6 +1,6 @@
 # pdf-module
 
-To view webpage
+##To view webpage
 
 1. Install nodejs and npm.
 
@@ -13,7 +13,7 @@ To view webpage
 3. Visit localhost:5555/index.html
 
 
-To generate pdf
+##To generate pdf
 
 1. Install phantomjs: https://github.com/sgentle/phantomjs-node
 
@@ -24,7 +24,7 @@ To generate pdf
 (Note: this generates 2 separate PDFs, charts.pdf and table.pdf, into output folder. The charts.pdf has the visual d3 charts, and the table.pdf has the events log table.)
 
 
-HTML pages for individual charts
+##HTML pages for individual charts
 
 1. Time Series Data: timeSeriesDataPlot2.html
 
