@@ -1,12 +1,20 @@
 # pdf-module
 
-To generate pdf: node htmlToPdf.js
+To view webpage
+1. Install nodejs and npm.
+2. Enter commands: 
+    npm install
+    npm start
+3. Visit localhost:5555/index.html
 
-HTML generation in:
-  -Time Series Data: timeSeriesDataPlot2.html
-  -Event Log: logsTable.html
-  -Usage Report: usageReportPie2.html
-  
-PDF generation in htmlToPdf.js
-  -Uses phantomjs-node --> https://github.com/sgentle/phantomjs-node
+To generate pdf
+1. Install phantomjs: https://github.com/sgentle/phantomjs-node
+2. Enter command:
+    node htmlToPdf.js
+
+HTML pages for individual charts
+1. Time Series Data: timeSeriesDataPlot2.html
+2. Event Log: logsTable.html
+3. Usage Report: usageReportPie2.html
+
   
