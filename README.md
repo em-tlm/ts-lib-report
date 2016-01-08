@@ -2,9 +2,11 @@
 
 1. Install nodejs and npm
 
-2. Enter commands:
+2. Cd into directory, and enter commands:
+
+    npm install
     
-    node app.js
+    npm start
 
 ##To view webpage
 
