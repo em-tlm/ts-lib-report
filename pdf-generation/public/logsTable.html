@@ -1,0 +1,178 @@
+<!---
+event log (a list of events)
+each event has timestamp, related tslink's name, username (email) and an unstructured  data field. 
+system log (think about /var/authlog in linux)
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+</head>
+<body>
+
+<script> 
+
+        //var json = some inputted JSON object
+        var json = '[' +
+            '{ "Timestamp":"12:00:00" , "TSLink":"TS-Link0" , "Username":"user-name0" , "Event":"event-0"},' +
+            '{ "Timestamp":"12:00:01" , "TSLink":"TS-Link1" , "Username":"user-name1" , "Event":"event-1"},' +
+            '{ "Timestamp":"12:00:02" , "TSLink":"TS-Link2" , "Username":"user-name2" , "Event":"event-2"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+            '{ "Timestamp":"12:00:04" , "TSLink":"TS-Link4" , "Username":"user-name4" , "Event":"event-4"} ]';
+
+        var obj = JSON.parse(json);
+
+        // can parse or just input array.... could have both options available, but seems like only need to take an array
+        // var obj = [ { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+        //             { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+        //             { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+        //             { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+        //             { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+        //             { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+        //             { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+        //             { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+        //             { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+        //             { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+        //             { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+        //             { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"} ];
+
+
+
+        </script>
+
+
+<div align="middle" class="container" width="60%">
+  <h1 align="middle"> <font face="Arial" size="5" color="black"><b>Event Log</b></font></h1>   
+  <table class="table table-striped header-fixed">
+
+
+    <!-- assuming the same for all event logs -->
+    <thead id="head">
+
+      <script> 
+
+        // build table head
+        var head = document.getElementById("head");
+        var arr = Object.keys(obj[0]); // keys from table
+        tr = document.createElement('tr');
+        for (var j = 0; j < arr.length; j++) {
+          th = document.createElement('th');
+          th.appendChild(document.createTextNode(arr[j])); 
+          tr.appendChild(th);
+        }
+        head.appendChild(tr);
+        document.getElementById("table").appendChild(head);
+
+      </script>
+    
+   </thead>
+
+    <tbody id="body" style="overflow-y: auto">
+
+
+
+      <!-- need to iteratively create a row for every object in data -->
+      
+
+      <script>
+        
+        // build table body 
+        var body = document.getElementById("body");
+
+        for (var i = 0; i < obj.length; i++) {
+          tr = document.createElement('tr');
+          td1 = document.createElement('td');
+          td1.appendChild(document.createTextNode(obj[i].Timestamp));
+          tr.appendChild(td1);
+          td2 = document.createElement('td');
+          td2.appendChild(document.createTextNode(obj[i].TSLink));
+          tr.appendChild(td2);
+          td3 = document.createElement('td');
+          td3.appendChild(document.createTextNode(obj[i].Username));
+          tr.appendChild(td3);
+          td4 = document.createElement('td');
+          td4.appendChild(document.createTextNode(obj[i].Event));
+          tr.appendChild(td4);
+          body.appendChild(tr);
+
+          // phantom can't execute jquery???
+          // tr = $('<tr/>');
+          // tr.append("<td>" + obj.data[i].Timestamp + "</td>");
+          // tr.append("<td>" + obj.data[i].TSLink + "</td>");
+          // tr.append("<td>" + obj.data[i].Username+ "</td>");
+          // tr.append("<td>" + obj.data[i].Event + "</td>");
+          // $('tbody').append(tr);
+        }
+
+        document.getElementById("table").appendChild(body);
+                  
+      </script>
+
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
