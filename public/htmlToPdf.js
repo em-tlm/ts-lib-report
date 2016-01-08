@@ -1,64 +1,53 @@
 var phantom = require('phantom');
-// var html = 'http://localhost:5555/table.html';
-// var file = 'output/logsTable_test.pdf';
+var html = 'http://localhost:5555/jank.html';
+var file = 'output/jank.pdf';
 
 
-// phantom.create(function(ph){
-//   ph.createPage(function(page) {
-//     page.viewportSize = { width: 1920, height: 1920 };   
-//     page.set('paperSize', {format: 'Letter', orientation: 'portrait'});
-//     page.set('zoomFactor', 1);
-//     //page.clipRect = { left: 0, top: 0, width: 10, height: 10 };
+phantom.create(function(ph){
+  ph.createPage(function(page) {
+    page.viewportSize = { width: 1920, height: 1920 };   
+    page.set('paperSize', {format: 'Letter', orientation: 'portrait', margin:'1cm'});
+    page.set('zoomFactor', 1);
 
-//     page.open(html, function(status) {
-//       console.log(status);
-//       // var clipRect = page.evaluate(function () { 
-//       //   return document.getElementById('charts').getBoundingClientRect(); 
-//       // });
-
-//       // page.clipRect = {
-//       //   top:    clipRect.top,
-//       //   left:   clipRect.left,
-//       //   width:  clipRect.width,
-//       //   height: clipRect.height
-//       // };
-
-//       page.render(file,function(){
-//         console.log('Page Rendered');
-//         ph.exit();
-//       });
-//     });
-//   });
-// });
+    page.open(html, function(status) {
+      console.log(status);
+    
+      page.render(file,function(){
+        console.log('Page Rendered');
+        ph.exit();
+      });
+    });
+  });
+});
 
 
 // MAKE MULTIPLE PAGES INTO PDFs
-var urls = ["http://localhost:5555/table.html", "http://localhost:5555/charts.html"];
-var files = ["output/table.pdf", "output/charts.pdf"];
+// var urls = ["http://localhost:5555/table.html", "http://localhost:5555/charts.html"];
+// var files = ["output/table.pdf", "output/charts.pdf"];
 
-phantom.create(function(ph){
-ph.createPage(function(page) {
-  page.viewportSize = { width: 1920, height: 1920 };   
-  page.set('paperSize', {format: 'Letter', orientation: 'portrait'});
-  page.set('zoomFactor', 1);
-  function render(urls, files, callback) {
-    if (urls.length == 0) {
-      console.log("Exiting...");
-      ph.exit();
-      if (callback) callback();
-        return;
-    }
-    var url = urls[0];
-    var file = files[0];
-    page.open(url, function(){
-      page.render(file);
-      render(urls.slice(1), files.slice(1), callback);
+// phantom.create(function(ph){
+// ph.createPage(function(page) {
+//   page.viewportSize = { width: 1920, height: 1920 };   
+//   page.set('paperSize', {format: 'Letter', orientation: 'portrait'});
+//   page.set('zoomFactor', 1);
+//   function render(urls, files, callback) {
+//     if (urls.length == 0) {
+//       console.log("Exiting...");
+//       ph.exit();
+//       if (callback) callback();
+//         return;
+//     }
+//     var url = urls[0];
+//     var file = files[0];
+//     page.open(url, function(){
+//       page.render(file);
+//       render(urls.slice(1), files.slice(1), callback);
 
-    });
-    }
-    render(urls, files);
-  });
-});
+//     });
+//     }
+//     render(urls, files);
+//   });
+// });
 
 
 
