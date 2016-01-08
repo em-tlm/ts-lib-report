@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/wendywei/pdf-module#readme",
   "dependencies": {
-    "express": "~4.13.1"
+    "express": "~4.13.1",
+    "phantomjs": "2.0.0"
   }
 }
