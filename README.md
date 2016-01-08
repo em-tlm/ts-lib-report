@@ -2,7 +2,7 @@
 
 ##To view webpage
 
-1. Install nodejs and npm.
+1. Install nodejs and npm
 
 2. Enter commands:
 
@@ -15,7 +15,7 @@
 
 ##To generate pdf
 
-1. Install phantomjs: https://github.com/sgentle/phantomjs-node
+1. Make sure phantomjs is installed
 
 2. Enter command:
 
