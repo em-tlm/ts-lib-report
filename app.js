@@ -1,4 +1,4 @@
-//function server() {
+
 
 console.log("here");
 
@@ -13,12 +13,9 @@ console.log('Server is up');
 app.use(express.static('public'));
 
 app.get('/createPDF', function(req, res) {
-<<<<<<< HEAD
 	//res.send(toPdf.output());
 	res.download(toPdf.output());
 	//res.send("success!");
 });
 
 app.listen(process.env.PORT || 5555);
-
-//};
