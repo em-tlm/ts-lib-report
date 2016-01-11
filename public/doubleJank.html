@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div style="padding: 10px 10px;">
-<a class="btn btn-danger" onClick="getPDF();" href="output/jank.pdf"> Generate PDF </a>
+<a class="btn btn-danger" onClick="getPDF();" > Generate PDF </a>
 
 </div>
 	<h1><iframe src="jank.html" frameborder="0" height="575" scrollable="yes" width="100%"></iframe></h1>
@@ -19,6 +19,7 @@ function getPDF() {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '../createPDF');
     xhr.send();
+    open('output/jank.pdf');
 }
 </script>
 </html>
