@@ -26,73 +26,73 @@ system log (think about /var/authlog in linux)
 <script> 
 
         //var json = some inputted JSON object
-        var json = '[' +
-            '{ "Timestamp":"12:00:01" , "TSLink":"TS-Link0" , "Username":"user-name0" , "Event":"event-0"},' +
-            '{ "Timestamp":"12:00:02" , "TSLink":"TS-Link1" , "Username":"user-name1" , "Event":"event-1"},' +
-            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link2" , "Username":"user-name2" , "Event":"event-2"},' +
-            '{ "Timestamp":"12:00:04" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:05" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:06" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:07" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:08" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:09" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:01" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:02" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:04" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:05" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:06" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:07" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:08" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:09" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:01" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:02" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:04" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:05" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:06" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:07" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:08" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:09" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:01" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:02" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:04" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:05" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:06" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:07" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:08" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:09" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:01" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:02" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:04" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:05" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:06" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:07" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:08" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:09" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:01" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:02" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:04" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:05" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:06" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:07" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:08" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:09" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:01" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:02" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:04" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:05" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:06" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
-            '{ "Timestamp":"12:00:07" , "TSLink":"TS-Link4" , "Username":"user-name4" , "Event":"event-4"} ]';
+        // var json = '[' +
+        //     '{ "Timestamp":"12:00:01" , "TSLink":"TS-Link0" , "Username":"user-name0" , "Event":"event-0"},' +
+        //     '{ "Timestamp":"12:00:02" , "TSLink":"TS-Link1" , "Username":"user-name1" , "Event":"event-1"},' +
+        //     '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link2" , "Username":"user-name2" , "Event":"event-2"},' +
+        //     '{ "Timestamp":"12:00:04" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:05" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:06" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:07" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:08" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:09" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:01" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:02" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:04" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:05" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:06" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:07" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:08" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:09" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:01" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:02" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:04" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:05" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:06" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:07" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:08" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:09" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:01" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:02" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:04" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:05" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:06" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:07" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:08" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:09" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:01" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:02" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:04" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:05" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:06" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:07" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:08" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:09" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:01" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:02" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:04" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:05" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:06" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:07" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:08" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:09" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:01" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:02" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:03" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:04" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:05" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:06" , "TSLink":"TS-Link3" , "Username":"user-name3" , "Event":"event-3"},' +
+        //     '{ "Timestamp":"12:00:07" , "TSLink":"TS-Link4" , "Username":"user-name4" , "Event":"event-4"} ]';
 
-        var obj = JSON.parse(json);
+        // var obj = JSON.parse(json);
 
-        // var obj = could be some array
-        
+        var obj = rawdata;
+
         </script>
 
 
