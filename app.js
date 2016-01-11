@@ -15,7 +15,6 @@ app.use(express.static('public'));
 app.get('/createPDF', function(req, res) {
 	//res.send(toPdf.output());
 	res.download(toPdf.output());
-	//res.send("success!");
 });
 
 app.listen(process.env.PORT || 5555);

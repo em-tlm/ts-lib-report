@@ -5,13 +5,19 @@
 	 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
- <script src="../app.js"></script>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 <body>
 	<div style="padding: 10px 10px;">
-<button type="button" class="btn btn-danger" onClick="server();">Generate PDF</button>
+<button type="button" class="btn btn-danger" onClick="getPDF();">Generate PDF</button>
 </div>
 	<h1><iframe src="jank.html" frameborder="0" height="575" scrollable="yes" width="100%"></iframe></h1>
 </body>
+<script>
+function getPDF() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '../createPDF');
+    xhr.send();
+}
+</script>
 </html>
