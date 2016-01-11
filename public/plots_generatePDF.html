@@ -12,7 +12,7 @@
 <a class="btn btn-danger" onClick="getPDF();" > Generate PDF </a>
 
 </div>
-	<h1><iframe src="jank.html" frameborder="0" height="575" scrollable="yes" width="100%"></iframe></h1>
+	<h1><iframe src="generation.html" frameborder="0" height="575" scrollable="yes" width="100%"></iframe></h1>
 </body>
 <script>
 function getPDF() {
@@ -20,7 +20,7 @@ function getPDF() {
     xhr.open('GET', '../createPDF');
     xhr.send(); 
     setTimeout(function () {
-    open('output/generation.pdf');
+    open('output/plots.pdf');
 }, 1000);
 }
 </script>
