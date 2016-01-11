@@ -91,6 +91,8 @@ system log (think about /var/authlog in linux)
 
         var obj = JSON.parse(json);
 
+        // var obj = could be some array
+        
         </script>
 
 
@@ -129,23 +131,14 @@ system log (think about /var/authlog in linux)
         
         // build table body 
         var body = document.getElementById("body");
-
-        for (var i = 0; i < obj.length; i++) {
-          tr = document.createElement('tr');
-          td1 = document.createElement('td');
-          td1.appendChild(document.createTextNode(obj[i].Timestamp));
-          tr.appendChild(td1);
-          td2 = document.createElement('td');
-          td2.appendChild(document.createTextNode(obj[i].TSLink));
-          tr.appendChild(td2);
-          td3 = document.createElement('td');
-          td3.appendChild(document.createTextNode(obj[i].Username));
-          tr.appendChild(td3);
-          td4 = document.createElement('td');
-          td4.appendChild(document.createTextNode(obj[i].Event));
-          tr.appendChild(td4);
-          body.appendChild(tr);
-
+        for (var i = 0; i < obj.length; i++) { // for each object
+          tr = document.createElement('tr'); // for each key
+          for (var j = 0; j < arr.length; j++) {
+            td = document.createElement('td');
+            td.appendChild(document.createTextNode(obj[i][arr[j]]));
+            tr.appendChild(td);
+          }
+           body.appendChild(tr);
         }
 
         document.getElementById("table").appendChild(body);
