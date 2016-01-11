@@ -1,9 +1,11 @@
+exports.output = function() {
+
 var phantom = require('phantom');
 var html = 'http://localhost:5555/jank.html';
-var file = 'output/jank.pdf';
+var file = 'public/output/jank.pdf';
 
 
-phantom.create(function(ph){
+  phantom.create(function(ph){
   ph.createPage(function(page) {
     page.viewportSize = { width: 1920, height: 1920 };   
     page.set('paperSize', {format: 'Letter', orientation: 'portrait', margin:'1cm'});
@@ -12,13 +14,15 @@ phantom.create(function(ph){
     page.open(html, function(status) {
       console.log(status);
     
-      page.render(file,function(){
+        page.render(file,function(){
         console.log('Page Rendered');
         ph.exit();
       });
     });
   });
 });
+  return file;
+};
 
 
 // MAKE MULTIPLE PAGES INTO PDFs
