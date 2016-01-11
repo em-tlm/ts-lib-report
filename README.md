@@ -10,7 +10,7 @@
 
 ##To view webpage
 
-1. Visit localhost:5555/jank.html
+1. Visit localhost:5555/plots_generatePDF.html
 
 
 ##To generate pdf
@@ -21,7 +21,7 @@
 
     node htmlToPdf.js
     
-(Note: this generates a single PDF from jank.html)
+(Note: this generates a single PDF from generation.html)
 
 
 ##HTML pages for individual charts
