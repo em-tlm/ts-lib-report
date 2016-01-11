@@ -10,18 +10,8 @@
 
 ##To view webpage
 
-1. Visit localhost:5555/jank.html
+1. Visit localhost:5555/plots_generatePDF.html
 
-
-##To generate pdf
-
-1. Make sure phantomjs is installed
-
-2. Enter command:
-
-    node htmlToPdf.js
-    
-(Note: this generates a single PDF from jank.html)
 
 
 ##HTML pages for individual charts
