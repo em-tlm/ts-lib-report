@@ -13,16 +13,6 @@
 1. Visit localhost:5555/plots_generatePDF.html
 
 
-##To generate pdf
-
-1. Make sure phantomjs is installed
-
-2. Enter command:
-
-    node htmlToPdf.js
-    
-(Note: this generates a single PDF from generation.html)
-
 
 ##HTML pages for individual charts
 
