@@ -48,7 +48,7 @@ var svg = d3.select("body").append("svg")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
 // var rawdata = some array of data
-var rawdata = [object Object],[object Object],[object Object];
+var rawdata = JSON.parse([{"label":"Running","data":"20"},{"label":"Running","data":"20"},{"label":"Running","data":"20"}]);
 
 for (var obj in rawdata) {
   rawdata[obj].label = rawdata[obj].label + ": " + rawdata[obj].data + "%";

@@ -46,9 +46,16 @@ function ejs2html(path, information) {
 
 ejs2html(__dirname+"/public/templates/pieTemplate.ejs", {
   pagename: 'Pie',
-  data: [{label:"Running", data:20},
-               {label:"Idle", data:60},
-               {label:"Stalled", data:20}]
+  data: JSON.stringify('[{
+          "label": "Running",
+          "data": "20"
+        }, {
+          "label": "Running",
+          "data": "20"
+        }, {
+          "label": "Running",
+          "data": "20"
+        }]')
 });
 
 
