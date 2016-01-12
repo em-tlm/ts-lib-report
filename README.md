@@ -5,21 +5,12 @@
 2. Cd into directory, and enter commands:
 
     npm install
+
+3. To Generate a PDF from HTML
     
-    npm start
-
-##To view webpage
-
-1. Visit localhost:5555/plots_generatePDF.html
-
-
-
-##HTML pages for individual charts
-
-1. Time Series Data: timeSeriesDataPlot.html
-
-2. Event Log: logsTable.html
-
-3. Usage Report: usageReportPie.html
-
+    var pdf = require('./newHTMLtoPDF.js');
+    pdf.output("path/to/output/file", data, 
+ 			{timestamp: "on", pageNumbers: "on", type: "table", "pie", "graph", or 'provide a template'})
   
+4. Notes on template:
+    - Does not support JQuery
