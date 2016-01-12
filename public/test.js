@@ -6,7 +6,7 @@ if (args.length < 3) {
 			[{label:"Running", data:20},
                {label:"Idle", data:60},
                {label:"Stalled", data:20}], 
-               {type: "pie", pageNumbers: "on", timestamp: "on"});
+               {title: "PIE CHART", type: "pie", pageNumbers: "on", timestamp: "on"});
 
 	pdf.output("output/graph.pdf", 
 			[{value:3, date:"2000-01-01T05:00:00"},

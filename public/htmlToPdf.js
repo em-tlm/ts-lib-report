@@ -9,7 +9,7 @@
 
 exports.output = function(out, data, options) {
 	// options: timestamp, header with page numbers, own html template
-	// {timestamp: "on", pageNumbers: "on", type: ("table", "pie", "graph", or 'provide a template')}
+	// {timestamp: "on", pageNumbers: "on", type: ("table", "pie", "graph", or 'provide a template, no path')}
 	var path = require('path');
   var ejs = require('ejs');
   var phantom = require('phantom');
@@ -26,7 +26,7 @@ exports.output = function(out, data, options) {
 		if (options.type === "pie") { html = path + 'usageReportPieTemplate.ejs';}
 		else if (options.type === "table") { html = path + 'logsTableTemplate.ejs';}
 		else if (options.type === "graph") { html = path + 'timeSeriesDataPlotTemplate.ejs';}
- 		else html = options.type;
+ 		else html = path + options.type;
  	} else {
  		console.log("ERROR: 'type' undefined");
  		return;
@@ -45,9 +45,10 @@ function ejs2html(path, information) {
     });
 }
 
+if (options.title ==== undefined) options.title = "";
 ejs2html(html,
   {
-  pagename: options.type,
+  pagename: options.title,
    raw: JSON.stringify(data)
   });
 
