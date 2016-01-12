@@ -7,15 +7,7 @@
 // might not work for tables.... but could do several pie charts and graphs
 // could do array of types???
 
-var rawdata = 0;
-
-getData = function() {
-  return [{Timestamp:"12:00:03",TSLink:"TS-Link0",Username:"user-name0",Event:"event-0"}];
-  //return rawdata;
-};
-
 exports.output = function(out, data, options) {
-  //rawdata = data;
 	// options: timestamp, header with page numbers, own html template
 	// {timestamp: "on", pageNumbers: "on", type: ("table", "pie", "graph", or 'provide a template')}
 	var path = require('path');
@@ -28,27 +20,18 @@ exports.output = function(out, data, options) {
 
   var path = path.join(__dirname, 'templates/');
 
-  // var keys = Object.keys(data[0]);
-  // var keyOutput = ;
-  // for (var i = 0; i < keys.length; i++) {
-
-  // }
 
 	var html;
 	if ("type" in options) {
-		if (options.type === "pie") { html = 'file://' + path + 'usageReportPieTemplate';}//?data=' + JSON.stringify(data); }
-		else if (options.type === "table") { html = 'file://' + path + 'logsTableTemplate';}//?data=1,2,3'; } //+ JSON.stringify(data); }
-		else if (options.type === "graph") { html = 'file://' + path + 'timeSeriesDataPlotTe
-    mplate';}//?data=' + JSON.stringify(data); }
+		if (options.type === "pie") { html = 'file://' + path + 'usageReportPieTemplate';}
+		else if (options.type === "table") { html = 'file://' + path + 'logsTableTemplate';}
+		else if (options.type === "graph") { html = 'file://' + path + 'timeSeriesDataPlotTemplate';}
  		else html = options.type;
  	} else {
  		console.log("ERROR: 'type' undefined");
  		return;
  	}
 
-// ejs.compile(data);
-// var htmlRender = ejs.render(html, {raw : 'wow'} );
-// console.log(htmlRender);
 function ejs2html(path, information) {
     fs.readFile(path, 'utf8', function (err, data) {
         if (err) { console.log(err); return false; }
@@ -66,7 +49,7 @@ function ejs2html(path, information) {
 
 ejs2html(__dirname+"/templates/usageReportPieTemplate.ejs",
   {
-  pagename: 'Pie',
+  pagename: options.type,
    raw: JSON.stringify(data)
   });
 
