@@ -4,6 +4,7 @@
   "description": "pdf module",
   "dependencies": {
     "phantomjs": ">=1.9.19",
-    "phantom": "~0.8.4"
+    "phantom": "~0.8.4",
+    "ejs":">=2.3.4"
   }
 }
