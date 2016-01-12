@@ -2,11 +2,7 @@
   "name": "pdf",
   "version": "1.0.0",
   "description": "pdf module",
-  "scripts": {
-    "start": "node app.js"
-  },
   "dependencies": {
-    "express": "~4.13.1",
     "phantomjs": ">=1.9.19",
     "phantom": "~0.8.4"
   }
