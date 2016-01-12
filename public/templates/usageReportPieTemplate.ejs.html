@@ -5,6 +5,7 @@
 <style>
 .content {height:100%}
 
+
 .arc text {
   font: 10px sans-serif;
   text-anchor: middle;
@@ -15,10 +16,12 @@
 }
 
 </style>
-<h1 align="middle"> <font face="Arial" size="5">Usage Plot</font></h1>
+<h1 align="middle"> <font face="Arial" size="5"></font>pie</h1>
 <body>
 <script src="d3/d3.min.js"></script>
+<script src="ejs.min.js"></script>
 <script>
+
 
 var width = 300,
     height = 300,
@@ -47,22 +50,12 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-//var json = some json data
-// var json = '[' +
-//             '{ "label":"Running: 20%" , "data":20},' +
-//             '{ "label":"Idle: 60%" , "data":60},' +
-//             '{ "label":"Stalled: 20%" , "data":20}]';
+var rawdata = JSON.parse("[{\"label\":\"Running\",\"data\":20},{\"label\":\"Idle\",\"data\":60},{\"label\":\"Stalled\",\"data\":20}]");
 
-// var rawdata = JSON.parse(json);
 
-// var rawdata = some array of data
-// var rawdata = [{label:"Running", data:20},
-//                {label:"Idle", data:60},
-//                {label:"Stalled", data:20}];
-
-for (var obj in rawdata) {
-  rawdata[obj].label = rawdata[obj].label + ": " + rawdata[obj].data + "%";
-}
+ for (var obj in rawdata) {
+   rawdata[obj].label = rawdata[obj].label + ": " + rawdata[obj].data + "%";
+ }
 
 var g = svg.selectAll(".arc").data(pie(rawdata))
 .enter().append("g").attr("class", "arc");
@@ -98,3 +91,4 @@ function type(d) {
 }*/
 
 </script>
+</body>

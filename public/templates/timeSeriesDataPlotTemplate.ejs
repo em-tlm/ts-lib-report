@@ -72,23 +72,7 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-//var json = some json input
-// var json = '[' +
-//             '{ "value":3, "date":"2000-01-01T05:00:00"},' +
-//             '{ "value":8, "date":"2000-01-01T06:30:00"},' +
-//             '{ "value":5, "date":"2000-01-01T11:15:00"},' +
-//             '{ "value":13, "date":"2000-01-01T22:00:00"},' +
-//             '{ "value":4, "date":"2000-01-02T05:00:00"}]';
-
-//var rawdata = JSON.parse(json);
-
-//var rawdata = some array of data
-
-var rawdata = [{value:3, date:"2000-01-01T05:00:00"},
-               {value:8, date:"2000-01-01T06:30:00"},
-               {value:5, date:"2000-01-01T11:15:00"},
-               {value:13, date:"2000-01-01T22:00:00"},
-               {value:4, date:"2000-01-02T05:00:00"}];
+var rawdata = JSON.parse(<%- JSON.stringify(raw)%>);
 
  color.domain(d3.keys(rawdata[0]).filter(function(key) { return key !== "date"; }));
 
