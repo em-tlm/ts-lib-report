@@ -23,9 +23,9 @@ exports.output = function(out, data, options) {
 
 	var html;
 	if ("type" in options) {
-		if (options.type === "pie") { html = 'file://' + path + 'usageReportPieTemplate';}
-		else if (options.type === "table") { html = 'file://' + path + 'logsTableTemplate';}
-		else if (options.type === "graph") { html = 'file://' + path + 'timeSeriesDataPlotTemplate';}
+		if (options.type === "pie") { html = path + 'usageReportPieTemplate.ejs';}
+		else if (options.type === "table") { html = path + 'logsTableTemplate.ejs';}
+		else if (options.type === "graph") { html = path + 'timeSeriesDataPlotTemplate.ejs';}
  		else html = options.type;
  	} else {
  		console.log("ERROR: 'type' undefined");
@@ -45,15 +45,13 @@ function ejs2html(path, information) {
     });
 }
 
-
-
-ejs2html(__dirname+"/templates/usageReportPieTemplate.ejs",
+ejs2html(html,
   {
   pagename: options.type,
    raw: JSON.stringify(data)
   });
 
-var htmlRendered = __dirname+"/templates/usageReportPieTemplate.ejs.html";
+var htmlRendered = html + ".html";
 
 
   phantom.create(function(ph){
@@ -93,11 +91,6 @@ var htmlRendered = __dirname+"/templates/usageReportPieTemplate.ejs.html";
 		page.set('paperSize', {format: 'Letter', orientation: 'portrait', margin:'1cm'});
 	}
     page.set('zoomFactor', 1);
-    // page.set('content',htmlRender);
-    // page.render(out, function() {
-    //   console.log('Page Rendered');
-    //   ph.exit();
-    // });
     page.open(htmlRendered, function(status) {
     	if (status === "success") {
     		console.log("Page Opened");
