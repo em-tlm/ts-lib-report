@@ -25,7 +25,8 @@ exports.output = function(out, data, options) {
 	if ("type" in options) {
 		if (options.type === "pie") { html = path + 'usageReportPieTemplate.ejs';}
 		else if (options.type === "table") { html = path + 'logsTableTemplate.ejs';}
-		else if (options.type === "graph") { html = path + 'timeSeriesDataPlotTemplate.ejs';}
+		else if (options.type === "timeSeries") { html = path + 'timeSeriesTemplate.ejs';}
+    else if (options.type === "lineGraph") { html = path + 'xyGraphTemplate.ejs';}
  		else html = path + options.type;
  	} else {
  		console.log("ERROR: 'type' undefined");
