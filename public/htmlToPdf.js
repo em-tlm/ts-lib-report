@@ -45,7 +45,7 @@ function ejs2html(path, information) {
     });
 }
 
-if (options.title ==== undefined) options.title = "";
+if (options.title === undefined) options.title = "";
 ejs2html(html,
   {
   pagename: options.title,

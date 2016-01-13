@@ -9,11 +9,11 @@ if (args.length < 3) {
                {title: "PIE CHART", type: "pie", pageNumbers: "on", timestamp: "on"});
 
 	pdf.output("output/graph.pdf", 
-			[{value:3, date:"2000-01-01T05:00:00"},
-               {value:8, date:"2000-01-01T06:30:00"},
-               {value:5, date:"2000-01-01T11:15:00"},
-               {value:13, date:"2000-01-01T22:00:00"},
-               {value:4, date:"2000-01-02T05:00:00"}], 
+			[{value:3, date:new Date(2000, 1, 1, 5, 00).getTime()},
+               {value:8, date:new Date(2000, 1, 1, 6, 30).getTime()},
+               {value:5, date:new Date(2000, 1, 1, 11, 15).getTime()},
+               {value:13, date:new Date(2000, 1, 1, 22, 00).getTime()},
+               {value:4, date:new Date(2000, 1, 2, 5, 00).getTime()}], 
                {type: "graph", pageNumbers: "on", timestamp: "on"});
 
 	pdf.output("output/table.pdf", 
