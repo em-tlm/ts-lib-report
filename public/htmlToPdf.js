@@ -18,16 +18,16 @@ exports.output = function(out, data, options) {
 
 	if (options === undefined) options = {};
 
-  var path = path.join(__dirname, 'templates/');
+  var curpath = path.join(__dirname, 'templates/');
 
 
-	var html;
+	var orightml;
 	if ("type" in options) {
-		if (options.type === "pie") { html = path + 'usageReportPieTemplate.ejs';}
-		else if (options.type === "table") { html = path + 'logsTableTemplate.ejs';}
-		else if (options.type === "timeSeries") { html = path + 'timeSeriesTemplate.ejs';}
-    else if (options.type === "lineGraph") { html = path + 'xyGraphTemplate.ejs';}
- 		else html = path + options.type;
+		if (options.type === "pie") { orightml = 'usageReportPieTemplate.ejs';}
+		else if (options.type === "table") { orightml = 'logsTableTemplate.ejs';}
+		else if (options.type === "timeSeries") { orightml ='timeSeriesTemplate.ejs';}
+    else if (options.type === "lineGraph") { orightml = 'xyGraphTemplate.ejs';}
+ 		else orightml = options.type;
  	} else {
  		console.log("ERROR: 'type' undefined");
  		return;
@@ -39,7 +39,7 @@ function ejs2html(path, information) {
         var ejs_string = data,
             template = ejs.compile(ejs_string),
             html = template(information);
-        fs.writeFile(path + '.html', html, function(err) {
+        fs.writeFile(curpath + 'htmlOutput/' + orightml + '.html', html, function(err) {
             if(err) { console.log(err); return false }
             return true;
         });  
@@ -47,13 +47,13 @@ function ejs2html(path, information) {
 }
 
 if (options.title === undefined) options.title = "";
-ejs2html(html,
+ejs2html(curpath+orightml,
   {
   pagename: options.title,
    raw: JSON.stringify(data)
   });
 
-var htmlRendered = html + ".html";
+var htmlRendered = curpath + 'htmlOutput/' + orightml + ".html";
 
 
   phantom.create(function(ph){

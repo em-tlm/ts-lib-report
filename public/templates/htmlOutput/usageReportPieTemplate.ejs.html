@@ -16,7 +16,7 @@
 }
 
 </style>
-<h1 align="middle"> <font face="Arial" size="5"></font><%= pagename%></h1>
+<h1 align="middle"> <font face="Arial" size="5"></font>Usage Report</h1>
 <body>
 <script src="d3/d3.min.js"></script>
 <script>
@@ -49,7 +49,7 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-var rawdata = JSON.parse(<%- JSON.stringify(raw)%>);
+var rawdata = JSON.parse("[{\"label\":\"Running\",\"data\":20},{\"label\":\"Idle\",\"data\":60},{\"label\":\"Stalled\",\"data\":20}]");
 
 for (var obj in rawdata) {
   rawdata[obj].label = rawdata[obj].label + ": " + rawdata[obj].data + "%";
