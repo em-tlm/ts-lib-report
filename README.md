@@ -16,5 +16,5 @@
 4. Notes on templates:
     - Does not support JQuery
     - data must be defined in template as JSON.parse(<%- JSON.stringify(raw)%>)
-        
-        (see .ejs files in public/templates for examples)
+    
+      (see .ejs files in public/templates for examples)
