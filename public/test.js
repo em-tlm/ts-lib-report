@@ -16,6 +16,7 @@ if (args.length < 3) {
  //               {value:4, date:new Date(2000, 1, 2, 5, 00).getTime()}], 
  //               {type: "timeSeries", pageNumbers: "on", timestamp: "on"});
 
+
      pdf.output("output/lineGraph.pdf", 
 			[{xtitle: "THIS IS X"},{ytitle: "THIS IS Y"},[{x:1, y:3},
                {x:2, y:8},

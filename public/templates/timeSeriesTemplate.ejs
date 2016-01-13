@@ -28,6 +28,14 @@ body {
   stroke-width: 1.5px;
 }
 
+.grid .tick {
+    stroke: lightgrey;
+    opacity: 0.7;
+}
+.grid path {
+      stroke-width: 0;
+}
+
 </style>
 <head>
 	<script language="javascript" type="text/javascript" src="d3/d3.min.js"></script>
@@ -41,7 +49,7 @@ var margin = {top: 20, right: 80, bottom: 30, left: 80},
     width = 800 - margin.left - margin.right,
     height = 450 - margin.top - margin.bottom;
 
-var parseDate = d3.time.format("%Y%m%d").parse;
+//var parseDate = d3.time.format("%Y%m%d").parse;
 
 var x = d3.time.scale()
     .range([0, width]);
@@ -53,11 +61,13 @@ var color = d3.scale.category10();
 
 var xAxis = d3.svg.axis()
     .scale(x)
-    .orient("bottom");
+    .orient("bottom")
+    .ticks(10);
 
 var yAxis = d3.svg.axis()
     .scale(y)
-    .orient("left");
+    .orient("left")
+    .ticks(10);
 
 var line = d3.svg.line()
     .interpolate("basis")
@@ -99,17 +109,41 @@ var rawdata = JSON.parse(<%- JSON.stringify(raw)%>);
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+      .call(xAxis)
+    .selectAll("text")
+      .attr("y", 0)
+      .attr("x", 9)
+      .attr("dy", ".35em")
+      .attr("transform", "rotate(90)")
+      .style("text-anchor", "start");
 
   svg.append("g")
       .attr("class", "y axis")
       .call(yAxis)
     .append("text")
       .attr("transform", "rotate(-90)")
-      .attr("y", 6)
+      .attr("y", 0 - margin.left/2)
+      .attr("x",0 - (height / 2))
       .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("");
+      .style("text-anchor", "middle")
+      .text("Axis + Units");
+
+  svg.append("g")         
+      .attr("class", "grid")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis
+          .tickSize(-height, 0, 0)
+          .tickFormat("")
+          .ticks(60)
+      )
+
+  svg.append("g")         
+      .attr("class", "grid")
+      .call(yAxis
+          .tickSize(-width, 0, 0)
+          .tickFormat("")
+          .ticks(60)
+      )
 
   var city = svg.selectAll(".city")
       .data(cities)
