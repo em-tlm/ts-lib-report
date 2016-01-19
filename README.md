@@ -14,14 +14,15 @@
             title: "title",
             timestamp: "on", 
             pageNumbers: "on", 
-            type: "table", "pie", "graph", or "provide/path/to/template" 
+            type: "table", "pie", "graph", or "provide/name/of/template"
             });
         
     * see test.js for data entry examples
   
 4. Notes on templates:
     - Does not support JQuery
-    - data must be defined in template as: 
+    - Store your template in template folder
+    - Data must be defined in template as: 
     
             JSON.parse(<%- JSON.stringify(raw)%>)
 
