@@ -10,8 +10,8 @@
     
     var pdf = require('./newHTMLtoPDF.js');
 
-    pdf.output("path/to/output/file", data, </br >
- 		    { title: "title",</br > 
+    pdf.output("path/to/output/file", data, {</br >
+          <#> title: "title",</br > 
  			timestamp: "on", </br >
  			pageNumbers: "on", </br >
  			type: "table", "pie", "graph", or "provide/path/to/template"</br >
