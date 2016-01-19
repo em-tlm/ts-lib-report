@@ -34,6 +34,9 @@ body {
 <script>
 
  var data = JSON.parse(<%- JSON.stringify(raw)%>);  
+ if (data.length < 3) {
+  console.log("ERROR: Must lable axis.");
+ }
  var xTitle = data[0].xtitle;
  var yTitle = data[1].ytitle;
  

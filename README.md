@@ -14,7 +14,7 @@
             title: "title",
             timestamp: "on", 
             pageNumbers: "on", 
-            type: "table", "pie", "graph", or "provide/path/to/template"
+            type: "table", "pie", "graph", or "provide/path/to/template" 
             });
         
     * see test.js for data entry examples

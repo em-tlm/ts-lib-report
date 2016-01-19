@@ -1,24 +1,16 @@
-//var pdf = require('./newHTMLtoPDF.js');
-// call pdf.output("path/to/output/file", data, 
-// 			{timestamp: "on", pageNumbers: "on", type: "table", "pie", "graph", or 'provide a template'})
-
-
-// for array of one chart type: generate an html page with looping of array data and frames of data type
-// might not work for tables.... but could do several pie charts and graphs
-// could do array of types???
-
 exports.output = function(out, data, options) {
 	// options: timestamp, header with page numbers, own html template
 	// {timestamp: "on", pageNumbers: "on", type: ("table", "pie", "graph", or 'provide a template, no path')}
-	var path = require('path');
+	
+  var path = require('path');
   var ejs = require('ejs');
   var phantom = require('phantom');
   var fs = require('fs');
 
 
-	if (options === undefined) options = {};
+	if (options === undefined) options = {}; // if options undefined, default options
 
-  var curpath = path.join(__dirname, 'templates/');
+  var curpath = path.join(__dirname, 'templates/'); 
 
 
 	var orightml;
@@ -33,33 +25,34 @@ exports.output = function(out, data, options) {
  		return;
  	}
 
+// generates html from ejs template
 function ejs2html(path, information) {
     fs.readFile(path, 'utf8', function (err, data) {
         if (err) { console.log(err); return false; }
         var ejs_string = data,
             template = ejs.compile(ejs_string),
             html = template(information);
-        fs.writeFile(curpath + 'htmlOutput/' + orightml + '.html', html, function(err) {
+            // saves html file to htmlOutput directory
+        fs.writeFile(curpath + 'htmlOutput/' + orightml + '.html', html, function(err) { 
             if(err) { console.log(err); return false }
             return true;
         });  
     });
 }
 
+// call ejs2html 
 if (options.title === undefined) options.title = "";
 ejs2html(curpath+orightml,
-  {
-  pagename: options.title,
-   raw: JSON.stringify(data)
+  { pagename: options.title,
+    raw: JSON.stringify(data)
   });
 
-var htmlRendered = curpath + 'htmlOutput/' + orightml + ".html";
-
+var htmlRendered = curpath + 'htmlOutput/' + orightml + ".html"; // path to rendered file
 
   phantom.create(function(ph){
   ph.createPage(function(page) {
     page.viewportSize = { width: 1920, height: 1920 };
-
+    
     if (options.pageNumbers === "on") {
     var headerObj = 
     	{ header: { height: '1cm',
@@ -84,7 +77,6 @@ var htmlRendered = curpath + 'htmlOutput/' + orightml + ".html";
    				 })
   		}
   	}
-
   	if (options.pageNumbers === "on" || 
   		options.timestamp === "on") {	
 		page.set('paperSize', {format: 'Letter', 
@@ -92,7 +84,7 @@ var htmlRendered = curpath + 'htmlOutput/' + orightml + ".html";
 	} else {
 		page.set('paperSize', {format: 'Letter', orientation: 'portrait', margin:'1cm'});
 	}
-    page.set('zoomFactor', 1);
+    page.set('zoomFactor', 1)
     page.open(htmlRendered, function(status) {
     	if (status === "success") {
     		console.log("Page Opened");
