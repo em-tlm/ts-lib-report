@@ -49,7 +49,9 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-var rawdata = JSON.parse(<%- JSON.stringify(raw)%>);
+var rawdata;
+if ("pie" in localStorage) rawdata = pie.shift();
+else rawdata = JSON.parse(<%- JSON.stringify(raw)%>);
 
 for (var obj in rawdata) {
   rawdata[obj].label = rawdata[obj].label + ": " + rawdata[obj].data + "%";

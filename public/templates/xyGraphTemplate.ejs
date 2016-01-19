@@ -33,14 +33,17 @@ body {
 <script src="d3/d3.min.js"></script>
 <script>
 
- var data = JSON.parse(<%- JSON.stringify(raw)%>);  
- if (data.length < 3) {
+var rawdata;
+if ("xy" in localStorage) rawdata = xy.shift();
+else rawdata = JSON.parse(<%- JSON.stringify(raw)%>);
+
+ if (rawdata.length < 3) {
   console.log("ERROR: Must lable axis.");
  }
- var xTitle = data[0].xtitle;
- var yTitle = data[1].ytitle;
+ var xTitle = rawdata[0].xtitle;
+ var yTitle = rawdata[1].ytitle;
  
- var rawdata = data[2];
+ var rawdata = rawdata[2];
  var xKey = Object.keys(rawdata[0])[0];
  var yKey = Object.keys(rawdata[0])[1];
 

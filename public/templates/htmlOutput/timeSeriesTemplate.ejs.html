@@ -45,10 +45,17 @@ body {
 <body>
 <script>
 
-var data = JSON.parse("[{\"xtitle\":\"date\"},{\"ytitle\":\"value\"},[{\"value\":3,\"date\":949399200000},{\"value\":8,\"date\":949404600000},{\"value\":5,\"date\":949421700000},{\"value\":13,\"date\":949460400000},{\"value\":4,\"date\":949485600000}]]");
-var xTitle = data[0].xtitle;
-var yTitle = data[1].ytitle;
-var rawdata = data[2];
+var rawdata;
+if ("timeSeries" in localStorage) rawdata = timeSeries.shift();
+else rawdata = JSON.parse("[{\"xtitle\":\"date\"},{\"ytitle\":\"value\"},[{\"value\":3,\"date\":949399200000},{\"value\":8,\"date\":949404600000},{\"value\":5,\"date\":949421700000},{\"value\":13,\"date\":949460400000},{\"value\":4,\"date\":949485600000}]]");
+
+if (rawdata.length < 3) {
+  console.log("ERROR: Must lable axis.");
+}
+
+var xTitle = rawdata[0].xtitle;
+var yTitle = rawdata[1].ytitle;
+var rawdata = rawdata[2];
 
 var margin = {top: 20, right: 80, bottom: 35, left: 80},
     width = 800 - margin.left - margin.right,

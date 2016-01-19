@@ -45,13 +45,17 @@ body {
 <body>
 <script>
 
-var data = JSON.parse(<%- JSON.stringify(raw)%>);
-if (data.length < 3) {
+var rawdata;
+if ("timeSeries" in localStorage) rawdata = timeSeries.shift();
+else rawdata = JSON.parse(<%- JSON.stringify(raw)%>);
+
+if (rawdata.length < 3) {
   console.log("ERROR: Must lable axis.");
 }
-var xTitle = data[0].xtitle;
-var yTitle = data[1].ytitle;
-var rawdata = data[2];
+
+var xTitle = rawdata[0].xtitle;
+var yTitle = rawdata[1].ytitle;
+var rawdata = rawdata[2];
 
 var margin = {top: 20, right: 80, bottom: 35, left: 80},
     width = 800 - margin.left - margin.right,
