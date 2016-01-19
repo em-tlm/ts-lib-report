@@ -21,7 +21,8 @@
   
 4. Notes on templates:
     - Does not support JQuery
-    - data must be defined in template as: 
+    - Store your template in template folder
+    - Data must be defined in template as: 
     
             JSON.parse(<%- JSON.stringify(raw)%>)
 
