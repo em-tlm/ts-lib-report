@@ -15,7 +15,7 @@
         timestamp: "on", </br >
         pageNumbers: "on", </br >
         type: "table", "pie", "graph", or "provide/path/to/template"</br >
-        }) </br >
+    }) </br >
         * see test.js for data entry examples
   
 4. Notes on templates:
