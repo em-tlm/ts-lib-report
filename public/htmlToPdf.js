@@ -1,35 +1,9 @@
-var PDFs = [];
-
-exports.concat = function(output) {
-  // how to deal with page numbers?
-  var fs = require('fs');
-  var exec = require('child_process').exec;
-  var PDFMerge = require('pdf-merge');
-  var pdfMerge = new PDFMerge(PDFs, output);
-
-  pdfMerge.merge(function(error, result) {
-    if (error != null) console.log(error);
-    else fs.writeFile(output, result);
-  });
-  
-  setTimeout(function () {
-    for (var i = 0; i < PDFs.length; i++) {
-    var child = exec('rm ./' + PDFs[i], function(err) {
-      if (err) console.log(err);
-    });
-  }}, 1000);
-
-};
-
-exports.output = function(out, data, options) {
-	// options: timestamp, header with page numbers, own html template
-	// {timestamp: "on", pageNumbers: "on", type: ("table", "pie", "graph", or 'provide a template, no path')}
+// @input outFile string name of output file
+// @input template ejs template specified by user
+// @input inputData ejs input data matching template specified by user. if not all fields match, give warning message in console.
+// @input pageOptions optional toggle for timestamp, header, and pg #'s
+exports.output = function(outFile, template, inputData, pageOptions) {
 	
-  if (out === "merge") {
-    out = "output/" + PDFs.length + ".pdf"
-    PDFs.push(out);
-  }
-  
   var path = require('path');
   var ejs = require('ejs');
   var phantom = require('phantom');
