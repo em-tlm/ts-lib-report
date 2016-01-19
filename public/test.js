@@ -2,11 +2,11 @@ var pdf = require('./htmlToPdf.js');
 var args = process.argv.slice(1);
 if (args.length < 3) {
 	
-	// pdf.output("output/pie.pdf", 
-	// 		[{label:"Running", data:20},
- //               {label:"Idle", data:60},
- //               {label:"Stalled", data:20}], 
- //               {title: "Usage Report", type: "pie", pageNumbers: "on", timestamp: "on"});
+	pdf.output("output/pie.pdf", 
+			[{label:"Running", data:20},
+               {label:"Idle", data:60},
+               {label:"Stalled", data:20}], 
+               {title: "Usage Report", type: "pie", pageNumbers: "on", timestamp: "on"});
 
 	pdf.output("output/timeSeries.pdf", 
                [{xtitle: "date"}, {ytitle: "value"},
@@ -18,28 +18,28 @@ if (args.length < 3) {
                {title: "Time v Value", type: "timeSeries", pageNumbers: "on", timestamp: "on"});
 
 
- //     pdf.output("output/lineGraph.pdf", 
-	// 		[{xtitle: "THIS IS X"},{ytitle: "THIS IS Y"},[{x:1, y:3},
- //               {x:2, y:8},
- //               {x:3, y:5},
- //               {x:4, y:13},
- //               {x:5, y:4}]], 
- //               {title: "X-Y", type: "lineGraph", pageNumbers: "on", timestamp: "on"});
+     pdf.output("output/lineGraph.pdf", 
+			[{xtitle: "THIS IS X"},{ytitle: "THIS IS Y"},[{x:1, y:3},
+               {x:2, y:8},
+               {x:3, y:5},
+               {x:4, y:13},
+               {x:5, y:4}]], 
+               {title: "X-Y", type: "lineGraph", pageNumbers: "on", timestamp: "on"});
  
-	// pdf.output("output/table.pdf", 
-	// 		[ { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
- //                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
- //                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
- //                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
- //                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
- //                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
- //                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
- //                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
- //                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
- //                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
- //                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
- //                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"} ], 
- //               {title: "Event Log", type: "table", pageNumbers: "on", timestamp: "on"});
+     pdf.output("output/table.pdf", 
+			[ { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
+                    { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"} ], 
+               {title: "Event Log", type: "table", pageNumbers: "on", timestamp: "on"});
 } else {
 	pdf.output(args[1], args[2], args[3]);
 }
