@@ -1,6 +1,7 @@
 exports.concat = function(pdfs, output) {
   // how to deal with page numbers?
   var fs = require('fs');
+  var exec = require('child_process').exec;
   var PDFMerge = require('pdf-merge');
   var pdfMerge = new PDFMerge(pdfs, output);
 
@@ -8,6 +9,13 @@ exports.concat = function(pdfs, output) {
     if (error != null) console.log(error);
     else fs.writeFile(output, result);
   });
+  setTimeout(function () {
+for (var i = 0; i < pdfs.length; i++) {
+var child = exec('rm ./' + pdfs[i], function(err) {
+  if (err) console.log(err);
+});
+}}, 1000);
+
 };
 
 exports.output = function(out, data, options) {
@@ -108,7 +116,6 @@ var htmlRendered = curpath + 'htmlOutput/' + orightml + ".html"; // path to rend
     });
   });
 });
-return out;
 };
 
 
