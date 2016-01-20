@@ -1,6 +1,6 @@
-var d3 = require('d3');
+//var d3 = require('d3');
 
-var pie = module.exports = function(){
+exports.pie = function(){
 
 
 // default values

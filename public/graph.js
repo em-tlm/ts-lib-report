@@ -1,6 +1,6 @@
-var d3 = require('d3');
+//var d3 = require('d3');
 
-var graph = module.exports = function(){
+exports.graph = function(){
 
 
 // default values

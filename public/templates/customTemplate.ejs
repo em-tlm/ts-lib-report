@@ -9,7 +9,7 @@
 	<%= pie.title %>
 	<script>
 	chartHelper.getPie({
-		data: <%-JSON.parse(JSON.stringify(pie.data))%>,
+		data: <%-JSON.stringify(pie.data)%>,
 		containerId: "<%=pie.id%>"
 	})
 	</script>
@@ -20,7 +20,7 @@
 	<%= graph.title %>
 	<script>
 	chartHelper.getGraph({
-		data: <%-JSON.parse(JSON.stringify(graph.data))%>,
+		data: <%-JSON.stringify(graph.data)%>,
 		xAxisLabel: "<%=graph.xAxisLabel%>",
 		yAxisLabel: "<%=graph.yAxisLabel%>",
 		containerId: "<%=graph.id%>"

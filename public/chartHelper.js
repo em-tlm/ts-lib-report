@@ -2,8 +2,8 @@ var d3 = require('d3');
 var jsdom = require('jsdom');
 var doc = jsdom.jsdom();
 
-var pie = require('/pie');
-var graph = require('/graph');
+var pie = require('./pie.js').pie();
+var graph = require('./graph.js').graph();
 
 var getTable = function(params){
 	// does not use d3
@@ -40,12 +40,3 @@ var getGraph = function(params){
 
 	return svg;
 };
-
-
-module.exports = {
-	getTable: getTable,
-	getPie: getPie,
-	getGraph: getGraph
-}
-
-chartHelper = module.exports;
