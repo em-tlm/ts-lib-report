@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+<div>
+	<%= title1 %>
+	<%-
+	chartHelper.getTable({
+		data: table.data,
+		width: table.width
+		height: table.height
+		containerId: table.id
+	})
+	%>
+</div>
+
+<div>
+	<%= title2 %>
+	<%-
+	chartHelper.getPie({
+		data: pie.data,
+		containerId: pie.id
+	})
+	%>
+</div>
+
+<div>
+	<%= title3 %>
+	<%-
+	chartHelper.getGraph({
+		data: graph.data,
+		xAxisLabel: graph.xAxisLabel,
+		yAxisLabel: graph.yAxisLabel,
+		containerId: graph.id
+	})
+	%>
+</div>
+
+</body>
+<html>
