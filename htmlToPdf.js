@@ -4,7 +4,6 @@ var path = require('path');
 var phantom = require('phantom');
 var Q = require('q'); 
 var prompt = require('prompt-sync');
-var exec = require('child_process').exec;
 var curpath = path.join(__dirname, 'templates/'); 
 
 // renders html file by appending ejs templates to templateFile
@@ -129,7 +128,7 @@ exports.output = function(out, data, options) {
    var proceed = "y";
   }
 
-  if (proceed === "y") {
+  if (proceed === "y" || proceed === "Y") {
 
     // deal with defaults
     if (options.pageNumbers === undefined) options.pageNumbers = false;
