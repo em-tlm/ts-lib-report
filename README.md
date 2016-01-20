@@ -27,7 +27,7 @@
     - Store your template in the template folder.
     - Unparsed data must be defined in template as: 
     
-            JSON.parse(<%- JSON.stringify(raw)%>)
+            <%- JSON.stringify(raw)%>
     
     - Parse the data in the EJS template.
 

@@ -40,7 +40,7 @@ function appendBody(data, outputFile) {
       console.log("ERROR: 'type' undefined");
       return;
     }
-      ejs2html(curpath+orightml, { raw: JSON.stringify(data[i]) }, outputFile); 
+      ejs2html(curpath+orightml, { raw: data[i] }, outputFile); 
     }
 }; 
 

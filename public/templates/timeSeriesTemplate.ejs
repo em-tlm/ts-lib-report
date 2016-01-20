@@ -43,7 +43,7 @@ body {
 <body>
 <script>
 
-var timeData = JSON.parse(<%- JSON.stringify(raw)%>);
+var timeData = <%- JSON.stringify(raw)%>;
 var element = document.getElementById("time header");
 element.innerHTML = timeData.title;
 

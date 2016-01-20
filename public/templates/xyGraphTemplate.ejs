@@ -36,7 +36,7 @@ body {
 <script src="d3/d3.min.js"></script>
 <script>
 
-var xyData = JSON.parse(<%- JSON.stringify(raw)%>);
+var xyData = <%- JSON.stringify(raw)%>;
 var element = document.getElementById("xy header");
 element.innerHTML = xyData.title;
 

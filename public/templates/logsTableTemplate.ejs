@@ -23,7 +23,7 @@
     <thead id="head">
 
       <script> 
-        var tableData = JSON.parse(<%- JSON.stringify(raw)%>);
+        var tableData = <%- JSON.stringify(raw)%>;
 
         var element = document.getElementById("table header");
         element.innerHTML = tableData.title;
