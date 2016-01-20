@@ -1,9 +1,7 @@
-<!--new version using d3-->
-<!--time series data 
-with proper label, legend and unit on axis
-different color for different sensor streams-->
+<!--TIME SERIES CHART-->
 
 <!DOCTYPE html>
+
 <meta charset="utf-8">
 <style>
 *{margin:20;padding:0}
@@ -40,22 +38,22 @@ body {
 <head>
 	<script language="javascript" type="text/javascript" src="d3/d3.min.js"></script>
   </script>
-  <h1 align="middle"><font face="Arial" size="5"></font><%= pagename%></h1>
+  <h1 align="middle" id="time header"><font face="Arial" size="2"></font>Time Title</h1>
 </head>
 <body>
 <script>
 
-var rawdata;
-if ("timeSeries" in localStorage) rawdata = timeSeries.shift();
-else rawdata = JSON.parse(<%- JSON.stringify(raw)%>);
+var timeData = JSON.parse(<%- JSON.stringify(raw)%>);
+var element = document.getElementById("time header");
+element.innerHTML = timeData.title;
 
+var rawdata = timeData.data;
 if (rawdata.length < 3) {
   console.log("ERROR: Must lable axis.");
 }
 
-var xTitle = rawdata[0].xtitle;
-var yTitle = rawdata[1].ytitle;
-var rawdata = rawdata[2];
+var xTitle = timeData.xtitle;
+var yTitle = timeData.ytitle;
 
 var margin = {top: 20, right: 80, bottom: 35, left: 80},
     width = 800 - margin.left - margin.right,

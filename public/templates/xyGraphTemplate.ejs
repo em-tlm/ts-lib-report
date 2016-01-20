@@ -1,4 +1,7 @@
+<!--XY CHART-->
+
 <!DOCTYPE html>
+
 <meta charset="utf-8">
 <style>
 
@@ -27,23 +30,24 @@ body {
 <head>
   <script language="javascript" type="text/javascript">
   </script>
-  <h1 align="middle"><font face="Arial" size="5"></font><%= pagename%></h1>
+  <h1 align="middle" id="xy header"><font face="Arial" size="2"></font>XY Title</h1>
 </head>
 <body>
 <script src="d3/d3.min.js"></script>
 <script>
 
-var rawdata;
-if ("xy" in localStorage) rawdata = xy.shift();
-else rawdata = JSON.parse(<%- JSON.stringify(raw)%>);
+var xyData = JSON.parse(<%- JSON.stringify(raw)%>);
+var element = document.getElementById("xy header");
+element.innerHTML = xyData.title;
 
+var rawdata = xyData.data;
  if (rawdata.length < 3) {
   console.log("ERROR: Must lable axis.");
  }
- var xTitle = rawdata[0].xtitle;
- var yTitle = rawdata[1].ytitle;
+
+ var xTitle = xyData.xtitle;
+ var yTitle = xyData.ytitle;
  
- var rawdata = rawdata[2];
  var xKey = Object.keys(rawdata[0])[0];
  var yKey = Object.keys(rawdata[0])[1];
 
@@ -73,6 +77,8 @@ var line = d3.svg.line()
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+    .attr("display", "block")
+    .attr("style", "margin: auto")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 

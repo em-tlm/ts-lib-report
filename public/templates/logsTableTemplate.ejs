@@ -1,10 +1,7 @@
-<!---
-event log (a list of events)
-each event has timestamp, related tslink's name, username (email) and an unstructured  data field. 
-system log (think about /var/authlog in linux)
--->
+<!--TABLE-->
 
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 
@@ -18,7 +15,7 @@ system log (think about /var/authlog in linux)
 
 
 <div align="middle" class="container" width="60%">
-  <h1 align="middle"> <font face="Arial" size="5" color="black"><b><%= pagename%></b></font></h1>   
+  <h1 align="middle" id="table header"> <font face="Arial" size="2" color="black"><b>Table Title</b></font></h1>  
   <div class="bodycontainer scrollable"> 
   <table class="table table-striped header-fixed table-scrollable" id="table">
 
@@ -26,7 +23,12 @@ system log (think about /var/authlog in linux)
     <thead id="head">
 
       <script> 
-        var rawdata = JSON.parse(<%- JSON.stringify(raw)%>);
+        var tableData = JSON.parse(<%- JSON.stringify(raw)%>);
+
+        var element = document.getElementById("table header");
+        element.innerHTML = tableData.title;
+       
+        var rawdata = tableData.data;
         // build table head
         var head = document.getElementById("head");
         var arr = Object.keys(rawdata[0]); // keys from table
@@ -72,3 +74,4 @@ system log (think about /var/authlog in linux)
 <style>
 </style>
 </html>
+
