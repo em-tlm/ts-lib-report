@@ -3,6 +3,7 @@ var fs = require('fs');
 var path = require('path');
 var phantom = require('phantom');
 var Q = require('q'); 
+var prompt = require('prompt-sync');
 var exec = require('child_process').exec;
 var curpath = path.join(__dirname, 'templates/'); 
 
@@ -94,21 +95,47 @@ function createPDF(htmlToRender, output, pageNumbers, timeStamp) {
   });
 };
 
+function promptUser(out) {
+  console.log('The file \"' + out + '\" already exists. Proceed and overwrite? (y/n)');
+  var result = prompt();
+  return result;
+};
+
+function checkIfExists(file) {
+  var count = 1;
+  var temp = file;
+    while (fs.existsSync(curpath + temp)) {
+      temp = file;
+      temp = temp.substring(0, temp.length - 5);
+      temp = temp + "(" + count + ").html";
+      count++;
+  }
+  return temp;
+};
+
 exports.output = function(out, data, options) {
 
-  if (options.title === undefined) options.title = "";
+  if (fs.existsSync(out)) {
+    var proceed = promptUser(out);
+  } else {
+   var proceed = "y";
+  }
+
+  if (proceed === "y") {
+
+    if (options.title === undefined) options.title = "";
+    if (options.pageNumbers === undefined) options.pageNumbers = false;
+    if (options.timestamp === undefined) options.timestamp = false;
+    if (options.template === undefined) options.template = "htmlOutput/template.html";
     
-    var file = options.template;
-    if (fs.existsSync(curpath + file)) {
-      var child = exec('rm ' + curpath + file, function(err) {
-        if (err) console.log(err);
-      });
-    }
+    var file = checkIfExists(options.template);
+    var htmlRendered = curpath + file;
+    appendTitle("title.ejs", options.title, file);
+    appendBody(data, file);
+    createPDF(htmlRendered, out, options.pageNumbers, options.timestamp);
   
-  appendTitle("title.ejs", options.title, file);
-  appendBody(data, file);
-  
-  var htmlRendered = curpath + 'htmlOutput/template.html';
-  createPDF(htmlRendered, out, options.pageNumbers, options.timestamp);
+  } else {
+    console.log("No HTML or PDF Rendered");
+  }
 
 };
