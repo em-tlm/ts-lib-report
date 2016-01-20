@@ -16,8 +16,8 @@
         
     	pdf.output("path/to/output/file", data, {
             title: "title", //default blank
-            timestamp: true, //default true
-            pageNumbers: true, //default true
+            timestamp: true, //default false
+            pageNumbers: true, //default false
             });
         
     * see test.js for further data entry examples as they are different for each template

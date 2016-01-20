@@ -7,6 +7,7 @@ var prompt = require('prompt-sync');
 var exec = require('child_process').exec;
 var curpath = path.join(__dirname, 'templates/'); 
 
+// renders html file by appending ejs templates to templateFile
 function ejs2html(path, information, templateFile) {
     var data = fs.readFileSync(path, 'utf8');
     Q.when(data, function () { 
@@ -21,6 +22,7 @@ function ejs2html(path, information, templateFile) {
     });
   };
 
+// called only when title option present
 function appendTitle(path, name, outputFile) { 
   ejs2html(curpath + path, {title: name}, outputFile);
 }; 
@@ -42,6 +44,7 @@ function appendBody(data, outputFile) {
     }
 }; 
 
+// uses phantom module for node to render PDF from the template file rendered by EJS
 function createPDF(htmlToRender, output, pageNumbers, timeStamp) {
   phantom.create(function(ph){
     ph.createPage(function(page) {
@@ -95,12 +98,15 @@ function createPDF(htmlToRender, output, pageNumbers, timeStamp) {
   });
 };
 
+// makes sure to not overwrite existing PDFs without permission
 function promptUser(out) {
   console.log('The file \"' + out + '\" already exists. Proceed and overwrite? (y/n)');
   var result = prompt();
   return result;
 };
 
+// if template file of name already exists, will append tail to it...
+// debatedly could handle the same way as the PDF?
 function checkIfExists(file) {
   var count = 1;
   var temp = file;
@@ -113,9 +119,11 @@ function checkIfExists(file) {
   return temp;
 };
 
+// function called by user
+// Will first render HTML from data and then render PDF from HTML.
 exports.output = function(out, data, options) {
 
-  if (fs.existsSync(out)) {
+  if (fs.existsSync(out)) { // check if PDF output file already exists
     var proceed = promptUser(out);
   } else {
    var proceed = "y";
@@ -123,19 +131,19 @@ exports.output = function(out, data, options) {
 
   if (proceed === "y") {
 
-    if (options.title === undefined) options.title = "";
+    // deal with defaults
     if (options.pageNumbers === undefined) options.pageNumbers = false;
     if (options.timestamp === undefined) options.timestamp = false;
     if (options.template === undefined) options.template = "htmlOutput/template.html";
     
-    var file = checkIfExists(options.template);
-    var htmlRendered = curpath + file;
-    appendTitle("title.ejs", options.title, file);
-    appendBody(data, file);
-    createPDF(htmlRendered, out, options.pageNumbers, options.timestamp);
+    var file = checkIfExists(options.template); // makes sure not to overwrite existing HTML
+    var htmlRendered = curpath + file; // path to final HTML file for phantom
+    if (options.title != undefined) appendTitle("title.ejs", options.title, file); // renders HTML for title
+    appendBody(data, file); // renders HTML for body, ie all data entries
+    createPDF(htmlRendered, out, options.pageNumbers, options.timestamp); // renders PDF from HTML
   
-  } else {
-    console.log("No HTML or PDF Rendered");
+  } else { // didn't want to overwrite existing PDF
+    console.log("No HTML or PDF Rendered"); 
   }
 
 };

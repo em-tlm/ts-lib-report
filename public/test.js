@@ -43,6 +43,6 @@ pdf.output("output/report.pdf", [
              { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
              { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"} ]}
       
-       ], {});
+       ], {title: "Full Report"});
 
 
