@@ -28,7 +28,7 @@ pdf.output("output/report.pdf", [
              {x:4, y:13},
              {x:5, y:4}]},
      
-     {type: "logsTableTemplate.ejs", 
+     {type: "logsTableTemplate.ejs", // could be "table", but just to show you could provide a custom template
       title: "Event Log",
       data: [{ Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
              { Timestamp:"12:00:00" , TSLink:"TS-Link0" , Username:"user-name0" , Event:"event-0"},
