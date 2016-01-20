@@ -1,59 +1,27 @@
 // @input outFile string name of output file
-// @input template ejs template specified by user
+// @input template ejs template file specified by user
 // @input inputData ejs input data matching template specified by user. if not all fields match, give warning message in console.
 // @input pageOptions optional toggle for timestamp, header, and pg #'s
+// @output PDF named outFile rendered by html generated from template
 exports.output = function(outFile, template, inputData, pageOptions) {
 	
-  var path = require('path');
-  var ejs = require('ejs');
-  var phantom = require('phantom');
-  var fs = require('fs');
+var path = require('path');
+var ejs = require('ejs');
+var phantom = require('phantom');
+var fs = require('fs');
 
-	if (options === undefined) options = {}; // if options undefined, default options
+var curpath = path.join(__dirname, 'templates/'); 
 
-  var curpath = path.join(__dirname, 'templates/'); 
+// call ejs2html (generate html file from template and data)
+ejs2html(curpath+template, inputData);
 
-	var orightml;
-	if ("type" in options) {
-		if (options.type === "pie") { orightml = 'usageReportPieTemplate.ejs';}
-		else if (options.type === "table") { orightml = 'logsTableTemplate.ejs';}
-		else if (options.type === "timeSeries") { orightml ='timeSeriesTemplate.ejs';}
-    else if (options.type === "lineGraph") { orightml = 'xyGraphTemplate.ejs';}
- 		else orightml = options.type;
- 	} else {
- 		console.log("ERROR: 'type' undefined");
- 		return;
- 	}
+var htmlRendered = curpath + 'htmlOutput/' + template + ".html"; // path to rendered file
 
-// generates html from ejs template
-function ejs2html(path, information) {
-    fs.readFile(path, 'utf8', function (err, data) {
-        if (err) { console.log(err); return false; }
-        var ejs_string = data,
-            template = ejs.compile(ejs_string),
-            html = template(information);
-            // saves html file to htmlOutput directory
-        fs.writeFile(curpath + 'htmlOutput/' + orightml + '.html', html, function(err) { 
-            if(err) { console.log(err); return false }
-            return true;
-        });  
-    });
-}
-
-// call ejs2html to generate PDF
-if (options.title === undefined) options.title = "";
-ejs2html(curpath+orightml,
-  { pagename: options.title,
-    raw: JSON.stringify(data)
-  });
-
-var htmlRendered = curpath + 'htmlOutput/' + orightml + ".html"; // path to rendered file
-
-  phantom.create(function(ph){
+phantom.create(function(ph){
   ph.createPage(function(page) {
     page.viewportSize = { width: 1920, height: 1920 };
 
-    if (options.pageNumbers === "on") {
+    if (pageOptions.pageNumbers === "on") {
     var headerObj = 
     	{ header: { height: '1cm',
     				contents: ph.callback(function(pageNum, numPages) {
@@ -61,7 +29,8 @@ var htmlRendered = curpath + 'htmlOutput/' + orightml + ".html"; // path to rend
    				 })
     	}}
   	}
-  	if (options.timestamp === "on") {
+
+  	if (pageOptions.timestamp === "on") {
   		if (headerObj === undefined) {
   			var headerObj = {
   			header: { 
@@ -77,27 +46,47 @@ var htmlRendered = curpath + 'htmlOutput/' + orightml + ".html"; // path to rend
    				 })
   		}
   	}
-  	if (options.pageNumbers === "on" || 
-  		options.timestamp === "on") {	
-		page.set('paperSize', {format: 'Letter', 
-		orientation: 'portrait', margin:'1cm', header: headerObj.header});
-	} else {
-		page.set('paperSize', {format: 'Letter', orientation: 'portrait', margin:'1cm'});
-	}
+
+  	if (pageOptions.pageNumbers === "on" || pageOptions.timestamp === "on") {	
+		  page.set('paperSize', {format: 'Letter', 
+		  orientation: 'portrait', margin:'1cm', header: headerObj.header});
+	  } else {
+		  page.set('paperSize', {format: 'Letter', orientation: 'portrait', margin:'1cm'});
+	  }
+
     page.set('zoomFactor', 1)
     page.open(htmlRendered, function(status) {
     	if (status === "success") {
     		console.log("Page Opened");
-    		page.render(out,function(){
+    		page.render(outFile,function(){
         		console.log('Page Rendered');
       		});
     	} else {
-      	console.log("ERROR: Not a valid template");
+      	console.log("ERROR: PDF not rendered.");
       	}
       	ph.exit();
     });
   });
 });
+
+
+
+// TODO: check that input data fields match template fields????
+// function to generate html file from ejs 
+function ejs2html(path, information) {
+    fs.readFile(path, 'utf8', function (err, data) {
+        if (err) { console.log(err); return false; }
+        var ejs_string = data,
+            template = ejs.compile(ejs_string),
+            html = template(information);
+            // saves html file to htmlOutput directory
+        fs.writeFile(curpath + 'htmlOutput/' + template + '.html', html, function(err) { 
+            if(err) { console.log(err); return false }
+            return true;
+        });  
+    });
+}
+
 };
 
 
