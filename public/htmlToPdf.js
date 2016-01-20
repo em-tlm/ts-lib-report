@@ -80,7 +80,7 @@ function ejs2html(path, information) {
             template = ejs.compile(ejs_string),
             html = template(information);
             // saves html file to htmlOutput directory
-        fs.writeFile(curpath + 'htmlOutput/' + template + '.html', html, function(err) { 
+        fs.writeFile(htmlRendered, html, function(err) { 
             if(err) { console.log(err); return false }
             return true;
         });  

@@ -3,28 +3,27 @@
 <html>
 <body>
 
-<% include templates/helpers.ejs %>
-<div>
-	<%= title2 %>
-	<%-
-	getPie({
-		data: JSON.parse(pie.data),
-		containerId: pie.id
+<div id = '<%= pie.id %>'>
+	<%= pie.title %>
+	<script>
+	chartHelper.getPie({
+		data: JSON.parse(<%=pie.data%>),
+		containerId: <%=pie.id%>
 	})
-	%>
-
+	</script>
 </div>
 
-<div>
-	<%= title3 %>
-	<%-
-	getGraph({
-		data: JSON.parse(graph.data),
-		xAxisLabel: graph.xAxisLabel,
-		yAxisLabel: graph.yAxisLabel,
-		containerId: graph.id
+
+<div id = '<%= graph.id %>'>
+	<%= graph.title %>
+	<script>
+	chartHelper.getGraph({
+		data: JSON.parse(<%=graph.data%>),
+		xAxisLabel: <%=graph.xAxisLabel%>,
+		yAxisLabel: <%=graph.yAxisLabel%>,
+		containerId: <%=graph.id%>
 	})
-	%>
+	</script>
 </div>
 
 </body>
