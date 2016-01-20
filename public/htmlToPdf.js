@@ -1,14 +1,14 @@
+var path = require('path');
+var ejs = require('ejs');
+var phantom = require('phantom');
+var fs = require('fs');
+
 // @input outFile string name of output file
 // @input template ejs template file specified by user
 // @input inputData ejs input data matching template specified by user. if not all fields match, give warning message in console.
 // @input pageOptions optional toggle for timestamp, header, and pg #'s
 // @output PDF named outFile rendered by html generated from template
 exports.output = function(outFile, template, inputData, pageOptions) {
-	
-var path = require('path');
-var ejs = require('ejs');
-var phantom = require('phantom');
-var fs = require('fs');
 
 var curpath = path.join(__dirname, 'templates/'); 
 

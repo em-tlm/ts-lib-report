@@ -2,31 +2,24 @@
 <!DOCTYPE html>
 <html>
 <body>
-<!-- <div>
-	<%= title1 %>
-	<%-
-	chartHelper.getTable({
-		data: table.data,
-		containerId: table.id
-	})
-	%>
-</div> -->
 
+<% include templates/helpers.ejs %>
 <div>
 	<%= title2 %>
 	<%-
-	chartHelper.getPie({
-		data: pie.data,
+	getPie({
+		data: JSON.parse(pie.data),
 		containerId: pie.id
 	})
 	%>
+
 </div>
 
 <div>
 	<%= title3 %>
 	<%-
-	chartHelper.getGraph({
-		data: graph.data,
+	getGraph({
+		data: JSON.parse(graph.data),
 		xAxisLabel: graph.xAxisLabel,
 		yAxisLabel: graph.yAxisLabel,
 		containerId: graph.id

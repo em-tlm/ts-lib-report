@@ -1,8 +1,7 @@
 var pdf = require('./htmlToPdf.js');
-//var arrayPdf = require('./htmlToPdfArray.js');
 
 pdf.output("output/customTest.pdf", 
-     'templates/customTemplate.ejs',
+     "/customTemplate.ejs",
      {
      // title1: 'Logs Table',
      // table:{
@@ -23,23 +22,24 @@ pdf.output("output/customTest.pdf",
 
      title2: 'Usage Pie',
      pie: {
-          data: [{label:"Running", data:20},
+          data: JSON.stringify([{label:"Running", data:20},
                  {label:"Idle", data:60},
-                 {label:"Stalled", data:20}],
+                 {label:"Stalled", data:20}]),
           id: 'pie'
      },
 
      title3: 'Time Series Data',
      graph:{
-          data: [{value:3, date:new Date(2000, 1, 1, 5, 00).getTime()},
+          data: JSON.stringify([{value:3, date:new Date(2000, 1, 1, 5, 00).getTime()},
                  {value:8, date:new Date(2000, 1, 1, 6, 30).getTime()},
                  {value:5, date:new Date(2000, 1, 1, 11, 15).getTime()},
                  {value:13, date:new Date(2000, 1, 1, 22, 00).getTime()},
-                 {value:4, date:new Date(2000, 1, 2, 5, 00).getTime()}]],
+                 {value:4, date:new Date(2000, 1, 2, 5, 00).getTime()}]),
           xAxisLabel: 'Time',
           yAxisLabel: 'Units',
           id: 'graph'
-     }, 
+     }
+     },
 
      {pageNumbers: "on", timestamp: "on"});
 
