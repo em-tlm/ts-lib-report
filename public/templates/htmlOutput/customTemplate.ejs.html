@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<script src="d3/d3.min.js"></script>
+
+<!-- INCLUDE THIS FILE TO USE PRESET CHARTS -->
+<script src="../../chartHelper.js"></script>
+
+<!-- MUST INCLUDE CSS FILE FOR PRESET D3 CHARTS -->
+<link href="../../chartStyle.css" rel="stylesheet" type="text/css"></script>
+
+
+<!-- CHART CONTAINERID MATCHES DIV ID -->
+<h1>Usage Pie<h1>
+<div id = 'pie'>
+	<script>
+	//specify function for chart
+	getPie({
+		data: [{"label":"Running","data":20},{"label":"Idle","data":60},{"label":"Stalled","data":20}],
+		containerId: "pie"
+	})
+	</script>
+</div>
+
+
+<h1>Time Series Data<h1>
+<div id = 'graph'>
+	<script>
+	getGraph({
+		data: [{"value":3,"date":949399200000},{"value":8,"date":949404600000},{"value":5,"date":949421700000},{"value":13,"date":949460400000},{"value":4,"date":949485600000}],
+		yAxisLabel: "Units",
+		containerId: "graph"
+	})
+	</script>
+</div>
+
+</body>
+<html>

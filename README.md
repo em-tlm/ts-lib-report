@@ -2,28 +2,18 @@
 
 1. Install nodejs and npm
 
-2. Cd into directory, and download modules by entering:
-
-    npm install
-
-3. To Generate a PDF from HTML
+2. To Generate a PDF from HTML 
     
         var pdf = require('./newHTMLtoPDF.js');
 
-    	pdf.output("path/to/output/file", data, {
-            title: "title",
-            timestamp: "on", 
-            pageNumbers: "on", 
-            type: "table", "pie", "graph", or "provide/name/of/template"
-            });
+        // output call example
+    	pdf.output("path/to/output.pdf", "path/to/template.ejs", { ID: data }, 
+            { pageNumbers: true, // default false
+              timestamp: true }, // default false
+            callback});
         
-    * see test.js for data entry examples
+    * see test.js for more output call examples
   
-4. Notes on templates:
-    - Does not support JQuery
-    - Store your template in template folder
-    - Data must be defined in template as: 
-    
-            JSON.parse(<%- JSON.stringify(raw)%>)
+3. See customTemplate.ejs for template example.
 
-    * see .ejs files in public/templates for examples
+4. You can customize elements in chartHelper.js and chartStyle.css or by creating your own helper.js and style.css files.

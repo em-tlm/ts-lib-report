@@ -7,10 +7,6 @@
 // var pie = require('./pie.js').pie();
 // var graph = require('./graph.js').graph();
 
-
-
-
-
 // INPUT USER DATA + APPEND CHART TO DIV 
 
 var getTable = function(params){

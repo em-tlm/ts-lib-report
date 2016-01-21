@@ -5,6 +5,10 @@
   "dependencies": {
     "phantomjs": ">=1.9.19",
     "phantom": "~0.8.4",
-    "ejs":">=2.3.4"
+    "ejs":">=2.3.4",
+    "prompt-sync": "1.0.0"
+  }, 
+  "scripts": {
+  "test": "mocha ~/ts-report-/public/test"
   }
 }

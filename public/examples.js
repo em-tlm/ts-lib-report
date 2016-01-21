@@ -1,12 +1,6 @@
-// run mocha test via command line
+// examples.js
 
-var pdf = require('./htmlToPdf.js');
-
-describe("Testing", function () {
-  it('output', function (done) {
-    this.timeout(5000);
-
-    pdf.output("output/customTest.pdf", 
+ pdf.output("output/customTest.pdf", 
       "/customTemplate.ejs",
       { pie: {
               id: "pie",
@@ -26,7 +20,4 @@ describe("Testing", function () {
               yAxisLabel: "Units"
               },
       }, 
-      { pageNumbers: "on", timestamp: "on" }, function (err) { if (err) console.error(err); done(); });
-  });
-});
-
+      { pageNumbers: "on", timestamp: "on" }, function (err) { if (err) console.error(err); });
