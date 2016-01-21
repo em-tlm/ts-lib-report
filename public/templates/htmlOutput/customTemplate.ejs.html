@@ -13,7 +13,7 @@
 
 
 <!-- CHART CONTAINERID MATCHES DIV ID -->
-<h1>Usage Pie<h1>
+<h1>Usage Pie</h1>
 <div id = 'pie'>
 	<script>
 	//specify function for chart
@@ -25,13 +25,24 @@
 </div>
 
 
-<h1>Time Series Data<h1>
+<h1>Time Series Data</h1>
 <div id = 'graph'>
 	<script>
 	getGraph({
 		data: [{"value":3,"date":949399200000},{"value":8,"date":949404600000},{"value":5,"date":949421700000},{"value":13,"date":949460400000},{"value":4,"date":949485600000}],
 		yAxisLabel: "Units",
 		containerId: "graph"
+	})
+	</script>
+</div>
+
+
+<h1>Events Log Table</h1>
+<div id = 'table'>
+	<script>
+	getTable({
+		data: [{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"}],
+		containerId: "table"
 	})
 	</script>
 </div>
