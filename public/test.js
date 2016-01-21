@@ -1,15 +1,11 @@
+// run mocha test via command line
+
 var pdf = require('./htmlToPdf.js');
 
-pdf.output("output/customTest.pdf", 
-     "/customTemplate.ejs",
-     {
-     pie: {
-          id: "pie",
-          title: "Usage Pie",
-          data: [{label:"Running", data:20},
-                 {label:"Idle", data:60},
-                 {label:"Stalled", data:20}],
-     },
+describe("Testing", function () {
+  it('output', function (done) {
+    this.timeout(5000);
+
 
      graph:{
           id: "graph",
@@ -43,4 +39,5 @@ pdf.output("output/customTest.pdf",
 
      },
 
-     {pageNumbers: "on", timestamp: "on"});
+});
+
