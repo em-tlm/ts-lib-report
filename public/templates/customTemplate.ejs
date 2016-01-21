@@ -16,6 +16,7 @@
 <h1><%= pie.title %><h1>
 <div id = '<%= pie.id %>'>
 	<script>
+	//specify function for chart
 	getPie({
 		data: <%-JSON.stringify(pie.data)%>,
 		containerId: "<%=pie.id%>"
@@ -29,7 +30,6 @@
 	<script>
 	getGraph({
 		data: <%-JSON.stringify(graph.data)%>,
-		xAxisLabel: "<%=graph.xAxisLabel%>",
 		yAxisLabel: "<%=graph.yAxisLabel%>",
 		containerId: "<%=graph.id%>"
 	})

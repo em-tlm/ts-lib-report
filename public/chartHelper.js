@@ -40,9 +40,9 @@ var getPie = function(params){
 var getGraph = function(params){
 
 	var chart = graph()
-		.data(params.data);
+		.data(params.data)
 		// .xAxisLabel(params.xAxisLabel)
-		// .yAxisLabel(params.yAxisLabel);
+		.yAxisLabel(params.yAxisLabel);
 
 	var selector = params.containerId;
 	d3.select(document.getElementById(selector)).call(chart);
