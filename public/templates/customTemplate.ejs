@@ -13,7 +13,7 @@
 
 
 <!-- CHART CONTAINERID MATCHES DIV ID -->
-<h1><%= pie.title %><h1>
+<h1><%= pie.title %></h1>
 <div id = '<%= pie.id %>'>
 	<script>
 	//specify function for chart
@@ -25,13 +25,24 @@
 </div>
 
 
-<h1><%= graph.title %><h1>
+<h1><%= graph.title %></h1>
 <div id = '<%= graph.id %>'>
 	<script>
 	getGraph({
 		data: <%-JSON.stringify(graph.data)%>,
 		yAxisLabel: "<%=graph.yAxisLabel%>",
 		containerId: "<%=graph.id%>"
+	})
+	</script>
+</div>
+
+
+<h1><%= table.title %></h1>
+<div id = '<%= table.id %>'>
+	<script>
+	getTable({
+		data: <%-JSON.stringify(table.data)%>,
+		containerId: "<%=table.id%>"
 	})
 	</script>
 </div>

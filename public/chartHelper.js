@@ -14,14 +14,24 @@
 // INPUT USER DATA + APPEND CHART TO DIV 
 
 var getTable = function(params){
-	// does not use d3
-	// can be purely html template
+
+	var chart = table()
+		.data(params.data);
+
+	var selector = params.containerId;
+	var wrapper = document.getElementById(selector);
+
+	var outerDiv = chart.outer();
+	wrapper.appendChild(outerDiv);
+
+	return chart;
 };
+
 
 var getPie = function(params){
 
 	var chart = pie()
-		.data(params.data)
+		.data(params.data);
 
 	var selector = params.containerId;
 	d3.select(document.getElementById(selector)).call(chart);
@@ -270,6 +280,80 @@ chart.yAxisLabel = function(value) {
 };
 
 
+
+return chart;
+
+}
+
+
+
+var table = function(){
+
+var data = [];
+var outerDiv;
+
+var chart = function(container){
+
+	// JS DOM CHART MADE FOR BOOTSTRAP CSS
+
+  	outerDiv = document.createElement("div");
+  	outerDiv.className = "container";
+
+  	var div = document.createElement("div");
+  	div.className = "bodycontainer scrollable";
+
+  	var table = document.createElement("table");
+  	table.className = "table table-striped header-fixed table-scrollable";
+
+  	outerDiv.appendChild(div);
+  	div.appendChild(table);
+
+
+	// create DOM elements thead with id="head" and tbody with id="body"
+	var head = document.createElement("thead");
+	head.id = "head";
+	var body = document.createElement("tbody");
+	body.id = "body";
+
+
+    // build table head (appending to DOM element "head")
+    var arr = Object.keys(data[0]); // keys from table
+    tr = document.createElement('tr');
+    for (var j = 0; j < arr.length; j++) {
+      th = document.createElement('th');
+      th.appendChild(document.createTextNode(arr[j])); 
+      tr.appendChild(th);
+    }
+    head.appendChild(tr);
+    table.appendChild(head);
+
+
+    // build table body (appending to DOM element "body")
+    for (var i = 0; i < data.length; i++) { // for each object
+      tr = document.createElement('tr'); // for each key
+      for (var j = 0; j < arr.length; j++) {
+        td = document.createElement('td');
+        td.appendChild(document.createTextNode(data[i][arr[j]]));
+        tr.appendChild(td);
+      }
+       body.appendChild(tr);
+    }
+
+    table.appendChild(body);
+
+    return outerDiv;
+};
+
+
+chart.data = function(value) {
+	if (!arguments.length) return data;
+	data = value;
+	return chart;
+};
+
+chart.outer = function(){
+	return chart();
+}
 
 return chart;
 

@@ -1,3 +1,5 @@
+@import url("http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css");
+
 /*HEADER*/
 
 h1 {
@@ -51,4 +53,10 @@ body {
 }
 .grid path {
       stroke-width: 0;
+}
+
+/*TABLE*/
+.container {
+	text-align: middle; 
+	width: 60%
 }
