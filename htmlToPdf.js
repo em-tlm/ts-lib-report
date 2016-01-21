@@ -6,6 +6,17 @@ var Q = require('q');
 var prompt = require('prompt-sync');
 var curpath = path.join(__dirname, 'templates/'); 
 
+//Exports for unit tests
+module.exports = {
+  ejs2html: ejs2html,
+  appendTitle: appendTitle,
+  appendBody: appendBody,
+  createPDF: createPDF,
+  promptUser: promptUser,
+  checkIfExists: checkIfExists,
+  output: output
+};
+
 // renders html file by appending ejs templates to templateFile
 function ejs2html(path, information, templateFile) {
     var data = fs.readFileSync(path, 'utf8');
@@ -120,7 +131,7 @@ function checkIfExists(file) {
 
 // function called by user
 // Will first render HTML from data and then render PDF from HTML.
-exports.output = function(out, data, options) {
+function output(out, data, options) {
 
   if (fs.existsSync(out)) { // check if PDF output file already exists
     var proceed = promptUser(out);
@@ -146,3 +157,4 @@ exports.output = function(out, data, options) {
   }
 
 };
+

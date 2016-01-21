@@ -8,5 +8,8 @@
     "ejs":">=2.3.4",
     "q": "~1.0.0",
     "prompt-sync": "1.0.0"
+  },
+  "scripts": {
+  "test": "mocha test"
   }
 }
