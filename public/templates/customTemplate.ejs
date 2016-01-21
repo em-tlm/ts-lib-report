@@ -3,12 +3,18 @@
 <html>
 <body>
 
+<script src="d3/d3.min.js"></script>
 <script src="../../chartHelper.js"></script>
 
+<!-- MUST INCLUDE CSS FILE FOR D3 CHARTS -->
+<link href="../../chartStyle.css" rel="stylesheet" type="text/css"></script>
+
+
+
+<h1><%= pie.title %><h1>
 <div id = '<%= pie.id %>'>
-	<%= pie.title %>
 	<script>
-	chartHelper.getPie({
+	getPie({
 		data: <%-JSON.stringify(pie.data)%>,
 		containerId: "<%=pie.id%>"
 	})
@@ -16,10 +22,10 @@
 </div>
 
 
+<h1><%= graph.title %><h1>
 <div id = '<%= graph.id %>'>
-	<%= graph.title %>
 	<script>
-	chartHelper.getGraph({
+	getGraph({
 		data: <%-JSON.stringify(graph.data)%>,
 		xAxisLabel: "<%=graph.xAxisLabel%>",
 		yAxisLabel: "<%=graph.yAxisLabel%>",
