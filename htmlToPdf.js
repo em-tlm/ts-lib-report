@@ -14,7 +14,7 @@ function ejs2html(path, information, templateFile) {
           template = ejs.compile(ejs_string),
           html = template(information);
           // saves html file to htmlOutput directory
-      var appended = fs.appendFileSync(curpath + templateFile, html);  
+      var appended = fs.appendFileSync(curpath + templateFile, html + "<br>");  
       Q.when(appended, function () {
         return "appended";
       });

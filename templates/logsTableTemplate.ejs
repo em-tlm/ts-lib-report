@@ -6,29 +6,22 @@
 <head>
 
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 </head>
 <body>
 
 
-<div align="middle" class="container" width="60%">
-  <h1 align="middle" id="table header"> <font face="Arial" size="2" color="black"><b>Table Title</b></font></h1>  
-  <div class="bodycontainer scrollable"> 
-  <table class="table table-striped header-fixed table-scrollable" id="table">
+<div align="middle" class="container"><div>
+  <h1 align="middle" id="table header"> <font face="Arial" size="6" color="black"><%- raw.title%></font></h1>
+  <table class="table" id="table">
 
     <!-- assuming the same for all event logs -->
     <thead id="head">
 
       <script> 
-        var tableData = <%- JSON.stringify(raw)%>;
-
-        var element = document.getElementById("table header");
-        element.innerHTML = tableData.title;
        
-        var rawdata = tableData.data;
+        var rawdata = <%- JSON.stringify(raw.data)%>;
         // build table head
         var head = document.getElementById("head");
         var arr = Object.keys(rawdata[0]); // keys from table

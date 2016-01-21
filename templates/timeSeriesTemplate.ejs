@@ -38,22 +38,18 @@ body {
 <head>
 	<script language="javascript" type="text/javascript" src="d3/d3.min.js"></script>
   </script>
-  <h1 align="middle" id="time header"><font face="Arial" size="2"></font>Time Title</h1>
+  <h1 align="middle" id="time header"><font face="Arial" size="5"></font><%- raw.title%></h1>
 </head>
 <body>
 <script>
 
-var timeData = <%- JSON.stringify(raw)%>;
-var element = document.getElementById("time header");
-element.innerHTML = timeData.title;
-
-var rawdata = timeData.data;
+var rawdata = <%- JSON.stringify(raw.data)%>;
 if (rawdata.length < 3) {
   console.log("ERROR: Must lable axis.");
 }
 
-var xTitle = timeData.xtitle;
-var yTitle = timeData.ytitle;
+var xTitle = "<%- raw.xtitle%>";
+var yTitle = "<%- raw.ytitle%>";
 
 var margin = {top: 20, right: 80, bottom: 35, left: 80},
     width = 800 - margin.left - margin.right,

@@ -30,29 +30,26 @@ body {
 <head>
   <script language="javascript" type="text/javascript">
   </script>
-  <h1 align="middle" id="xy header"><font face="Arial" size="2"></font>XY Title</h1>
+  <h1 align="middle" id="xy header"><font face="Arial" size="5"></font><%- raw.title%></h1>
 </head>
 <body>
 <script src="d3/d3.min.js"></script>
 <script>
 
-var xyData = <%- JSON.stringify(raw)%>;
-var element = document.getElementById("xy header");
-element.innerHTML = xyData.title;
 
-var rawdata = xyData.data;
+var rawdata = <%- JSON.stringify(raw.data)%>;;
  if (rawdata.length < 3) {
   console.log("ERROR: Must lable axis.");
  }
 
- var xTitle = xyData.xtitle;
- var yTitle = xyData.ytitle;
+ var xTitle = "<%- raw.xtitle%>";
+ var yTitle = "<%- raw.ytitle%>";
  
  var xKey = Object.keys(rawdata[0])[0];
  var yKey = Object.keys(rawdata[0])[1];
 
 
-var margin = {top: 20, right: 20, bottom: 30, left: 50},
+var margin = {top: 20, right: 50, bottom: 50, left: 50},
     width = 800 - margin.left - margin.right,
     height = 450 - margin.top - margin.bottom;
 

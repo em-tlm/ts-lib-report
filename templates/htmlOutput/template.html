@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <div>
-<h1 align="middle"> <font face="Arial" size="10" color="black"><b>Full Report</b></font></h1>  
-</div><!--PIE CHART-->
+<h1 align="middle"> <font face="Arial" size="6"><b>Full Report</b></font></h1>  
+</div><br><!--PIE CHART-->
 
 <!DOCTYPE html>
 
@@ -27,14 +27,11 @@
 }
 
 </style>
-<h1 align="middle" id="pie header"> <font face="Arial" size="2"></font>Pie Title</h1>
+<h1 align="middle" id="pie header"> <font face="Arial" size="5"></font>Usage Report</h1>
 <body>
 <script src="d3/d3.min.js"></script>
 <script>
 
-var pieData = {"type":"pie","title":"Usage Report","data":[{"label":"Running","data":20},{"label":"Idle","data":60},{"label":"Stalled","data":20}]};
-var element = document.getElementById("pie header");
-element.innerHTML = pieData.title;
 
 var width = 300,
     height = 300,
@@ -63,7 +60,7 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-var rawdata = pieData.data;
+var rawdata = [{"label":"Running","data":20},{"label":"Idle","data":60},{"label":"Stalled","data":20}];
 
 for (var obj in rawdata) {
   rawdata[obj].label = rawdata[obj].label + ": " + rawdata[obj].data + "%";
@@ -81,7 +78,118 @@ g.append("text").attr("transform", function(d) {return "translate(" + labelArc.c
 </script>
 </body>
 
-<!--TIME SERIES CHART-->
+<br><!--XY CHART-->
+
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+</style>
+<head>
+  <script language="javascript" type="text/javascript">
+  </script>
+  <h1 align="middle" id="xy header"><font face="Arial" size="5"></font>XY Graph</h1>
+</head>
+<body>
+<script src="d3/d3.min.js"></script>
+<script>
+
+
+var rawdata = [{"x":1,"y":3},{"x":2,"y":8},{"x":3,"y":5},{"x":4,"y":13},{"x":5,"y":4}];;
+ if (rawdata.length < 3) {
+  console.log("ERROR: Must lable axis.");
+ }
+
+ var xTitle = "THIS IS X";
+ var yTitle = "THIS IS Y";
+ 
+ var xKey = Object.keys(rawdata[0])[0];
+ var yKey = Object.keys(rawdata[0])[1];
+
+
+var margin = {top: 20, right: 50, bottom: 50, left: 50},
+    width = 800 - margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
+
+var x = d3.time.scale()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+var line = d3.svg.line()
+    .x(function(d) { return x(d[xKey]); })
+    .y(function(d) { return y(d[yKey]); });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .attr("display", "block")
+    .attr("style", "margin: auto")
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+x.domain(d3.extent(rawdata, function(d) { return d[xKey]; }));
+y.domain(d3.extent(rawdata, function(d) { return d[yKey]; }));
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+      .append("text")
+      .attr("dy", "3em")
+      .attr("dx", "3em")
+      .style("text-anchor", "end")
+      .text(xTitle);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text(yTitle);
+
+  svg.append("path")
+      .datum(rawdata)
+      .attr("class", "line")
+      .attr("d", line);
+
+
+</script>
+<br><!--TIME SERIES CHART-->
 
 <!DOCTYPE html>
 
@@ -121,22 +229,18 @@ body {
 <head>
 	<script language="javascript" type="text/javascript" src="d3/d3.min.js"></script>
   </script>
-  <h1 align="middle" id="time header"><font face="Arial" size="2"></font>Time Title</h1>
+  <h1 align="middle" id="time header"><font face="Arial" size="5"></font>Time Series</h1>
 </head>
 <body>
 <script>
 
-var timeData = {"type":"timeSeries","title":"TimeSeries","xtitle":"date","ytitle":"value","data":[{"value":3,"date":949399200000},{"value":8,"date":949404600000},{"value":5,"date":949421700000},{"value":13,"date":949460400000},{"value":4,"date":949485600000}]};
-var element = document.getElementById("time header");
-element.innerHTML = timeData.title;
-
-var rawdata = timeData.data;
+var rawdata = [{"value":3,"date":949399200000},{"value":8,"date":949404600000},{"value":5,"date":949421700000},{"value":13,"date":949460400000},{"value":4,"date":949485600000}];
 if (rawdata.length < 3) {
   console.log("ERROR: Must lable axis.");
 }
 
-var xTitle = timeData.xtitle;
-var yTitle = timeData.ytitle;
+var xTitle = "date";
+var yTitle = "value";
 
 var margin = {top: 20, right: 80, bottom: 35, left: 80},
     width = 800 - margin.left - margin.right,
@@ -256,121 +360,7 @@ var svg = d3.select("body").append("svg")
        .text(function(d) { return d.name; });
 
 </script> 
-<!--XY CHART-->
-
-<!DOCTYPE html>
-
-<meta charset="utf-8">
-<style>
-
-body {
-  font: 10px sans-serif;
-}
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.x.axis path {
-  display: none;
-}
-
-.line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 1.5px;
-}
-
-</style>
-<head>
-  <script language="javascript" type="text/javascript">
-  </script>
-  <h1 align="middle" id="xy header"><font face="Arial" size="2"></font>XY Title</h1>
-</head>
-<body>
-<script src="d3/d3.min.js"></script>
-<script>
-
-var xyData = {"type":"lineGraph","title":"XY Graph","xtitle":"THIS IS X","ytitle":"THIS IS Y","data":[{"x":1,"y":3},{"x":2,"y":8},{"x":3,"y":5},{"x":4,"y":13},{"x":5,"y":4}]};
-var element = document.getElementById("xy header");
-element.innerHTML = xyData.title;
-
-var rawdata = xyData.data;
- if (rawdata.length < 3) {
-  console.log("ERROR: Must lable axis.");
- }
-
- var xTitle = xyData.xtitle;
- var yTitle = xyData.ytitle;
- 
- var xKey = Object.keys(rawdata[0])[0];
- var yKey = Object.keys(rawdata[0])[1];
-
-
-var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 800 - margin.left - margin.right,
-    height = 450 - margin.top - margin.bottom;
-
-var x = d3.time.scale()
-    .range([0, width]);
-
-var y = d3.scale.linear()
-    .range([height, 0]);
-
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
-
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left");
-
-var line = d3.svg.line()
-    .x(function(d) { return x(d[xKey]); })
-    .y(function(d) { return y(d[yKey]); });
-
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .attr("display", "block")
-    .attr("style", "margin: auto")
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-x.domain(d3.extent(rawdata, function(d) { return d[xKey]; }));
-y.domain(d3.extent(rawdata, function(d) { return d[yKey]; }));
-
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis)
-      .append("text")
-      .attr("dy", "3em")
-      .attr("dx", "3em")
-      .style("text-anchor", "end")
-      .text(xTitle);
-
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text(yTitle);
-
-  svg.append("path")
-      .datum(rawdata)
-      .attr("class", "line")
-      .attr("d", line);
-
-
-</script>
-<!--TABLE-->
+<br><!--TABLE-->
 
 <!DOCTYPE html>
 
@@ -378,29 +368,22 @@ y.domain(d3.extent(rawdata, function(d) { return d[yKey]; }));
 <head>
 
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 </head>
 <body>
 
 
-<div align="middle" class="container" width="60%">
-  <h1 align="middle" id="table header"> <font face="Arial" size="2" color="black"><b>Table Title</b></font></h1>  
-  <div class="bodycontainer scrollable"> 
-  <table class="table table-striped header-fixed table-scrollable" id="table">
+<div align="middle" class="container"><div>
+  <h1 align="middle" id="table header"> <font face="Arial" size="6" color="black">Event Log</font></h1>
+  <table class="table" id="table">
 
     <!-- assuming the same for all event logs -->
     <thead id="head">
 
       <script> 
-        var tableData = {"type":"table","title":"Event Log","data":[{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"}]};
-
-        var element = document.getElementById("table header");
-        element.innerHTML = tableData.title;
        
-        var rawdata = tableData.data;
+        var rawdata = [{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"}];
         // build table head
         var head = document.getElementById("head");
         var arr = Object.keys(rawdata[0]); // keys from table
@@ -447,3 +430,4 @@ y.domain(d3.extent(rawdata, function(d) { return d[yKey]; }));
 </style>
 </html>
 
+<br>

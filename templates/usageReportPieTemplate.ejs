@@ -17,14 +17,11 @@
 }
 
 </style>
-<h1 align="middle" id="pie header"> <font face="Arial" size="2"></font>Pie Title</h1>
+<h1 align="middle" id="pie header"> <font face="Arial" size="5"></font><%- raw.title%></h1>
 <body>
 <script src="d3/d3.min.js"></script>
 <script>
 
-var pieData = <%- JSON.stringify(raw)%>;
-var element = document.getElementById("pie header");
-element.innerHTML = pieData.title;
 
 var width = 300,
     height = 300,
@@ -53,7 +50,7 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-var rawdata = pieData.data;
+var rawdata = <%- JSON.stringify(raw.data)%>;
 
 for (var obj in rawdata) {
   rawdata[obj].label = rawdata[obj].label + ": " + rawdata[obj].data + "%";
