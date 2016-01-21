@@ -19,18 +19,18 @@ module.exports = {
 
 // renders html file by appending ejs templates to templateFile
 function ejs2html(path, information, templateFile) {
-    var data = fs.readFileSync(path, 'utf8');
-    Q.when(data, function () { 
-      var ejs_string = data,
-          template = ejs.compile(ejs_string),
-          html = template(information);
-          // saves html file to htmlOutput directory
-      var appended = fs.appendFileSync(curpath + templateFile, html + "<br>");  
-      Q.when(appended, function () {
-        return "appended";
-      });
+  var data = fs.readFileSync(path, 'utf8');
+  Q.when(data, function () { 
+    var ejs_string = data,
+        template = ejs.compile(ejs_string),
+        html = template(information);
+        // saves html file to htmlOutput directory
+    var appended = fs.appendFileSync(curpath + templateFile, html + "<br>");  
+    Q.when(appended, function () {
+      return "appended";
     });
-  };
+  });
+};
 
 // called only when title option present
 function appendTitle(path, name, outputFile) { 
@@ -38,24 +38,25 @@ function appendTitle(path, name, outputFile) {
 }; 
 
 function appendBody(data, outputFile) {
-    for (var i = 0; i < data.length; i++) {
-    var orightml;
-    if ("type" in data[i]) {
-      if (data[i].type === "pie") { orightml = 'usageReportPieTemplate.ejs';}
-      else if (data[i].type === "table") { orightml = 'logsTableTemplate.ejs';}
-      else if (data[i].type === "timeSeries") { orightml ='timeSeriesTemplate.ejs';}
-      else if (data[i].type === "lineGraph") { orightml = 'xyGraphTemplate.ejs';}
-      else orightml = data[i].type;
-    } else {
-      console.log("ERROR: 'type' undefined");
-      return;
-    }
-      ejs2html(curpath+orightml, { raw: data[i] }, outputFile); 
-    }
+  for (var i = 0; i < data.length; i++) {
+  var orightml;
+  if ("type" in data[i]) {
+    if (data[i].type === "pie") { orightml = 'usageReportPieTemplate.ejs';}
+    else if (data[i].type === "table") { orightml = 'logsTableTemplate.ejs';}
+    else if (data[i].type === "timeSeries") { orightml ='timeSeriesTemplate.ejs';}
+    else if (data[i].type === "lineGraph") { orightml = 'xyGraphTemplate.ejs';}
+    else orightml = data[i].type;
+  } else {
+    console.log("ERROR: 'type' undefined");
+    return;
+  }
+    ejs2html(curpath+orightml, { raw: data[i] }, outputFile); 
+  }
 }; 
 
 // uses phantom module for node to render PDF from the template file rendered by EJS
-function createPDF(htmlToRender, output, pageNumbers, timeStamp) {
+function createPDF(htmlToRender, output, pageNumbers, timeStamp,cb) {
+
   phantom.create(function(ph){
     ph.createPage(function(page) {
       page.viewportSize = { width: 1920, height: 1920 };
@@ -98,11 +99,13 @@ function createPDF(htmlToRender, output, pageNumbers, timeStamp) {
           console.log("Page Opened");
           page.render(output,function(){
             console.log('Page Rendered');
+            cb("Success");
+            ph.exit();
           });
         } else {
-          console.log("ERROR: Not a valid template");
+         // console.log("ERROR: Not a valid template");
+          cb(new Error("ERROR: Not a valid template"));
         }
-        ph.exit();
       });
     });
   });
@@ -155,6 +158,4 @@ function output(out, data, options) {
   } else { // didn't want to overwrite existing PDF
     console.log("No HTML or PDF Rendered"); 
   }
-
 };
-
