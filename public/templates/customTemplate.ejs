@@ -16,10 +16,13 @@
 <h1><%= pie.title %></h1>
 <div id = '<%= pie.id %>'>
 	<script>
-	//specify function for chart
+	// specify function for chart
+	// data input must be in this format with JSON.stringify
 	getPie({
-		data: <%-JSON.stringify(pie.data)%>,
-		containerId: "<%=pie.id%>"
+		data: '<%-JSON.stringify(pie.data)%>',
+		width: '<%=pie.width%>',
+		height: '<%=pie.height%>',
+		containerId: '<%=pie.id%>'
 	})
 	</script>
 </div>
@@ -29,9 +32,11 @@
 <div id = '<%= graph.id %>'>
 	<script>
 	getGraph({
-		data: <%-JSON.stringify(graph.data)%>,
-		yAxisLabel: "<%=graph.yAxisLabel%>",
-		containerId: "<%=graph.id%>"
+		data:'<%-JSON.stringify(graph.data)%>',
+		width: '<%=graph.width%>', // cannot use percentage for width/height yet
+		height: '<%=graph.height%>',
+		yAxisLabel: '<%=graph.yAxisLabel%>',
+		containerId: '<%=graph.id%>'
 	})
 	</script>
 </div>
@@ -42,7 +47,7 @@
 	<script>
 	getTable({
 		data: <%-JSON.stringify(table.data)%>,
-		containerId: "<%=table.id%>"
+		containerId: '<%=table.id%>'
 	})
 	</script>
 </div>

@@ -7,6 +7,8 @@ var pdf = require('./htmlToPdf.js');
       { pie: {
               id: "pie",
               title: "Usage Pie",
+              width: 500,
+              height: 300,
               data: [{label:"Running", data:20},
                      {label:"Idle", data:60},
                      {label:"Stalled", data:20}],
@@ -14,6 +16,8 @@ var pdf = require('./htmlToPdf.js');
         graph:{
               id: "graph",
               title: "Time Series Data",
+              width: 500,
+              height: 300,
               data: [{value:3, date:new Date(2000, 1, 1, 5, 00).getTime()},
                      {value:8, date:new Date(2000, 1, 1, 6, 30).getTime()},
                      {value:5, date:new Date(2000, 1, 1, 11, 15).getTime()},

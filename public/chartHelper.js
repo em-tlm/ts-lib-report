@@ -27,6 +27,8 @@ var getTable = function(params){
 var getPie = function(params){
 
 	var chart = pie()
+		.width(params.width)
+		.height(params.height)
 		.data(params.data);
 
 	var selector = params.containerId;
@@ -48,6 +50,8 @@ var getGraph = function(params){
 	var chart = graph()
 		.data(params.data)
 		// .xAxisLabel(params.xAxisLabel)
+		.width(params.width)
+		.height(params.height)
 		.yAxisLabel(params.yAxisLabel);
 
 	var selector = params.containerId;
@@ -124,11 +128,27 @@ var chart = function(container){
 // TODO: REQUIRE DATA PARAM, OR ELSE CHART BREAKS
 chart.data = function(value) {
 	if (!arguments.length) return data;
-	data = value;
+	if (value=="") throw new Error("Error: need input data"); // error message
+	console.log("data"+data);
+	data = value.slice(1, value.length - 1);
+	console.log(data);
+	// data = value;
 	return chart;
 };
 
+chart.width = function(value) {
+	if (!arguments.length) return width;
+	if (value=="")return chart;
+	width = value;
+	return chart;
+};
 
+chart.height = function(value) {
+	if (!arguments.length) return height;
+	if (value=="")return chart;
+	height = value;
+	return chart;
+};
 
 return chart;
 
@@ -141,13 +161,16 @@ var graph = function(){
 
 
 // default values
-var yAxisLabel = "";
-var data = [];
+var data = [],
+	outerWidth = 800,
+	outerHeight = 450,
+	yAxisLabel = "";
+
 
 var chart = function(container){
 	var margin = {top: 20, right: 80, bottom: 30, left: 80},
-	    width = 800 - margin.left - margin.right,
-	    height = 450 - margin.top - margin.bottom;
+		width = outerWidth - margin.left - margin.right,
+    	height = outerHeight - margin.top - margin.bottom;
 
 	var x = d3.time.scale()
 	    .range([0, width]);
@@ -265,12 +288,29 @@ var chart = function(container){
 // TODO: NEED DATA PARAM, OR ELSE CHART BREAKS
 chart.data = function(value) {
 	if (!arguments.length) return data;
-	data = value;
+	if (value=="") throw new Error("Error: need input data"); // error message
+	data = value.slice(1, value.length - 1);
+	//data = value;
+	return chart;
+};
+
+chart.width = function(value) {
+	if (!arguments.length) return outerWidth;
+	if (value=='')return chart;
+	outerWidth = value;
+	return chart;
+};
+
+chart.height = function(value) {
+	if (!arguments.length) return outerHeight;
+	if (value=="")return chart;
+	outerHeight = value;
 	return chart;
 };
 
 chart.yAxisLabel = function(value) {
 	if (!arguments.length) return yAxisLabel;
+	if (value=="")return chart;
 	yAxisLabel = value;
 	return chart;
 };
@@ -343,6 +383,8 @@ var chart = function(container){
 
 chart.data = function(value) {
 	if (!arguments.length) return data;
+	if (value=="") throw new Error("Error: need input data"); // error message if data not inputted in examples.js
+	// TODO: if data param is not inputed in template function.... then?
 	data = value;
 	return chart;
 };
