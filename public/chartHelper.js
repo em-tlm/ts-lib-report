@@ -130,7 +130,7 @@ chart.data = function(value) {
 	if (!arguments.length) return data;
 	if (value=="") throw new Error("Error: need input data"); // error message
 	console.log("data"+data);
-	data = value.slice(1, value.length - 1);
+	data = eval(value);
 	console.log(data);
 	// data = value;
 	return chart;
@@ -289,7 +289,7 @@ var chart = function(container){
 chart.data = function(value) {
 	if (!arguments.length) return data;
 	if (value=="") throw new Error("Error: need input data"); // error message
-	data = value.slice(1, value.length - 1);
+	data = eval(value);
 	//data = value;
 	return chart;
 };
