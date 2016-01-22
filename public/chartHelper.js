@@ -125,14 +125,10 @@ var chart = function(container){
 
 
 
-// TODO: REQUIRE DATA PARAM, OR ELSE CHART BREAKS
 chart.data = function(value) {
 	if (!arguments.length) return data;
 	if (value=="") throw new Error("Error: need input data"); // error message
-	console.log("data"+data);
 	data = eval(value);
-	console.log(data);
-	// data = value;
 	return chart;
 };
 
