@@ -7,10 +7,19 @@
         var pdf = require('./newHTMLtoPDF.js');
 
         // output call example
-    	pdf.output("path/to/output.pdf", "path/to/template.ejs", { ID: data }, 
-            { pageNumbers: true, // default false
-              timestamp: true }, // default false
-            callback});
+        pdf.output("output/example1.pdf", 
+                  "/customTemplate.ejs",
+                  { pie: {
+                          id: "pie",
+                          title: "Usage Pie",
+                          width: 500,
+                          height: 275,
+                          data: [{label:"Running", data:20},
+                                 {label:"Idle", data:60},
+                                 {label:"Stalled", data:20}],
+                          }
+                  }, 
+                  { pageNumbers: "on", timestamp: "on" });
         
     * see test.js for more output call examples
   
