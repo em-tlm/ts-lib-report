@@ -152,6 +152,7 @@ return chart;
 }
 
 
+//TODO: add more options to graph? such as: multiple series
 
 // time series line graph
 var graph = function(){
