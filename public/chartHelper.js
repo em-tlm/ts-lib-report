@@ -29,17 +29,11 @@ var getPie = function(params){
 	var chart = pie()
 		.width(params.width)
 		.height(params.height)
-		.data(params.data);
+		.data(params.data)
+		.divID(params.containerId);
 
 	var selector = params.containerId;
 	d3.select(document.getElementById(selector)).call(chart);
-	var svg = d3.select(document.getElementById(selector)).node().outerHTML;
-
-	// d3.select(doc.body).append('div').attr('id', params.containerId).call(chart);
-
-	// var selector = params.containerId;
-	// var svg = d3.select(doc.getElementById(selector)).node().outerHTML;
-	// d3.select(doc.getElementById(selector)).remove();
 
 	return chart;
 };
@@ -52,19 +46,13 @@ var getGraph = function(params){
 		// .xAxisLabel(params.xAxisLabel)
 		.width(params.width)
 		.height(params.height)
-		.yAxisLabel(params.yAxisLabel);
+		.yAxisLabel(params.yAxisLabel)
+		.divID(params.containerId);
 
 	var selector = params.containerId;
 	d3.select(document.getElementById(selector)).call(chart);
-	var svg = d3.select(document.getElementById(selector)).node().outerHTML;
 
-	//d3.select("body").append('div').attr('id', params.containerId).call(chart);
-
-	// var selector = params.containerId;
-	// var svg = d3.select(doc.getElementById(selector)).node().outerHTML;
-	// d3.select(doc.getElementById(selector)).remove();
-
-	return svg;
+	return chart;
 };
 
 
@@ -77,7 +65,8 @@ var pie = function(){
 // default values
 var data = [],
 	width=300,
-	height=300;
+	height=300,
+	outerDiv="body";
 
 
 var chart = function(container){
@@ -99,7 +88,7 @@ var chart = function(container){
 	    .sort(null)
 	    .value(function(d) { return d.data; });
 
-	var svg = d3.select("body").append("svg")
+	var svg = d3.select(document.getElementById(outerDiv)).append("svg")
 	    .attr("width", width)
 	    .attr("height", height)
 	    .attr("display", "block")
@@ -147,6 +136,13 @@ chart.height = function(value) {
 	return chart;
 };
 
+chart.divID = function(value) {
+	if (!arguments.length) return outerDiv;
+	if (value=="")return chart;
+	outerDiv = value;
+	return chart;
+};
+
 return chart;
 
 }
@@ -162,13 +158,20 @@ var graph = function(){
 var data = [],
 	outerWidth = 800,
 	outerHeight = 450,
-	yAxisLabel = "";
+	yAxisLabel = "",
+	outerDiv = "body";
 
 
 var chart = function(container){
-	var margin = {top: 20, right: 80, bottom: 30, left: 80},
+	var margin = {top: 20, right: 80, bottom: 80, left: 80},
 		width = outerWidth - margin.left - margin.right,
     	height = outerHeight - margin.top - margin.bottom;
+
+    //var formatDate = d3.time.format("%Y-%m-%d %H:%M:%S");
+
+	data.forEach(function(d) {
+	    d.date = new Date(d.date);
+	});
 
 	var x = d3.time.scale()
 	    .range([0, width]);
@@ -193,7 +196,7 @@ var chart = function(container){
 	    .x(function(d) { return x(d.date); })
 	    .y(function(d) { return y(d.value); });
 
-	var svg = d3.select("body").append("svg")
+	var svg = d3.select(document.getElementById(outerDiv)).append("svg")
 	    .attr("width", width + margin.left + margin.right)
 	    .attr("height", height + margin.top + margin.bottom)
 	    .attr("display", "block")
@@ -203,11 +206,8 @@ var chart = function(container){
 
 	 color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
-	 data.forEach(function(d) {
-	    d.date = new Date(d.date);
-	  });
 
-	 var cities = color.domain().map(function(name) {
+	 var series = color.domain().map(function(name) {
 	    return {
 	      name: name,
 	      values: data.map(function(d) {
@@ -219,8 +219,8 @@ var chart = function(container){
 	  x.domain(d3.extent(data, function(d) { return d.date; }));
 
 	  y.domain([
-	    d3.min(cities, function(c) { return d3.min(c.values, function(v) { return v.value; }); }),
-	    d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.value; }); })
+	    d3.min(series, function(c) { return d3.min(c.values, function(v) { return v.value; }); }),
+	    d3.max(series, function(c) { return d3.max(c.values, function(v) { return v.value; }); })
 	  ]);
 
 	  svg.append("g")
@@ -231,7 +231,7 @@ var chart = function(container){
 	      .attr("y", 0)
 	      .attr("x", 9)
 	      .attr("dy", ".35em")
-	      .attr("transform", "rotate(90)")
+	      .attr("transform", "rotate(60)")
 	      .style("text-anchor", "start");
 
 	  svg.append("g")
@@ -262,17 +262,17 @@ var chart = function(container){
 	          .ticks(60)
 	      )
 
-	  var city = svg.selectAll(".city")
-	      .data(cities)
+	  var seriesLine = svg.selectAll(".seriesLine")
+	      .data(series)
 	    .enter().append("g")
-	      .attr("class", "city");
+	      .attr("class", "seriesLine");
 
-	  city.append("path")
+	  seriesLine.append("path")
 	      .attr("class", "line")
 	      .attr("d", function(d) { return line(d.values); })
 	      .style("stroke", function(d) { return color(d.name); });
 
-	  city.append("text")
+	  seriesLine.append("text")
 	      .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
 	       .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.value) + ")"; })
 	       .attr("x", 3)
@@ -313,7 +313,12 @@ chart.yAxisLabel = function(value) {
 	return chart;
 };
 
-
+chart.divID = function(value) {
+	if (!arguments.length) return outerDiv;
+	if (value=="")return chart;
+	outerDiv = value;
+	return chart;
+};
 
 return chart;
 
