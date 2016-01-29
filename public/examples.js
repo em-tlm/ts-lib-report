@@ -176,6 +176,7 @@ var pdf = require('./htmlToPdf.js');
  //            grid or no grid
  //           
  // TODO: make it so that not all points are required for each timestamp (data may come in asynchronously from different devices)
+ // true/false and numbers not supported for extra features?? i.e. ticks dont work yet
 
  pdf.output("output/example3.pdf", 
       "/graphTemplate.ejs",
@@ -190,15 +191,16 @@ var pdf = require('./htmlToPdf.js');
                      {date:new Date(2000, 1, 1, 17, 00).getTime(), line1:7, line2: 20, line3:4},
                      {date:new Date(2000, 1, 1, 22, 00).getTime(), line1:13, line2: 26, line3:22},
                      {date:new Date(2000, 1, 2, 5, 00).getTime(), line1:4, line2:8, line3:27}],
-              yAxisLabel: "Units"
+              yAxisLabel: "Units",
+              yGrid:"off"
               },
         graph2:{
               id: "graph2",
               title: "Time Series Data (Month)",
               width: 500,
               height: 275,
-              data: [{date:new Date(2000, 3, 1, 5, 00).getTime(), line1:3, line2:6, line3: 5},
-                     {date:new Date(2000, 3, 3, 6, 30).getTime(), line1:8, line2:16, line3:2},
+              data: [{date:new Date(2000, 3, 3, 5, 00).getTime(), line1:3, line2:6, line3: 5},
+                     {date:new Date(2000, 3, 8, 6, 30).getTime(), line1:8, line2:16, line3:2},
                      {date:new Date(2000, 3, 15, 11, 15).getTime(), line1:5, line2:10, line3:20},
                      {date:new Date(2000, 3, 17, 1, 15).getTime(), line1:10, line2:15, line3:5},
                      {date:new Date(2000, 3, 25, 11, 50).getTime(), line1:16, line2:23, line3:20},
@@ -211,7 +213,9 @@ var pdf = require('./htmlToPdf.js');
                      {date:new Date(2000, 5, 8, 4, 00).getTime(), line1:13, line2: 30, line3:21},
                      {date:new Date(2000, 5, 16, 22, 00).getTime(), line1:13, line2: 26, line3:24},
                      {date:new Date(2000, 5, 29, 5, 00).getTime(), line1:4, line2:8, line3:29}],
-              yAxisLabel: "Units"
+              yAxisLabel: "Units",
+              xGrid: "on",
+              yGrid: "on"
               }
       },
       { pageNumbers: "on", timestamp: "on" }, 

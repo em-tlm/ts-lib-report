@@ -47,6 +47,12 @@ var getGraph = function(params){
 		.width(params.width)
 		.height(params.height)
 		.yAxisLabel(params.yAxisLabel)
+		.xTicks(params.xTicks)
+		.yTicks(params.yTicks)
+		.xGrid(params.xGrid)
+		.yGrid(params.yGrid)
+		.xGridTicks(params.xGridTicks)
+		.yGridTicks(params.yGridTicks)
 		.divID(params.containerId);
 
 	var selector = params.containerId;
@@ -160,7 +166,13 @@ var data = [],
 	outerWidth = 500,
 	outerHeight = 450,
 	yAxisLabel = "",
-	outerDiv = "body";
+	outerDiv = "body",
+	xTicks=20,
+	yTicks=20,
+	xGrid="on",
+	yGrid="on",
+	xGridTicks=60,
+	yGridTicks=60;
 
 
 var chart = function(container){
@@ -185,12 +197,12 @@ var chart = function(container){
 	var xAxis = d3.svg.axis()
 	    .scale(x)
 	    .orient("bottom")
-	    .ticks(10);
+	    .ticks(xTicks);
 
 	var yAxis = d3.svg.axis()
 	    .scale(y)
 	    .orient("left")
-	    .ticks(10);
+	    .ticks(yTicks);
 
 	var line = d3.svg.line()
 	    .interpolate("basis")
@@ -245,22 +257,26 @@ var chart = function(container){
 	      .style("text-anchor", "middle")
 	      .text(yAxisLabel);
 
+	  if (xGrid==="on"){
 	  svg.append("g")         
 	      .attr("class", "grid")
 	      .attr("transform", "translate(0," + height + ")")
 	      .call(xAxis
 	          .tickSize(-height, 0, 0)
 	          .tickFormat("")
-	          .ticks(60)
+	          .ticks(xGridTicks)
 	      )
+	  }
 
+	  if (yGrid==="on"){
 	  svg.append("g")         
 	      .attr("class", "grid")
 	      .call(yAxis
 	          .tickSize(-width, 0, 0)
 	          .tickFormat("")
-	          .ticks(60)
+	          .ticks(yGridTicks)
 	      )
+	  }
 
 	  var seriesLine = svg.selectAll(".seriesLine")
 	      .data(series)
@@ -317,6 +333,48 @@ chart.divID = function(value) {
 	if (!arguments.length) return outerDiv;
 	if (value=="")return chart;
 	outerDiv = value;
+	return chart;
+};
+
+chart.xTicks = function(value) {
+	if (!arguments.length) return xTicks;
+	if (value=="")return chart;
+	xTicks = value;
+	return chart;
+};
+
+chart.yTicks = function(value) {
+	if (!arguments.length) return yTicks;
+	if (value=="")return chart;
+	yTicks = value;
+	return chart;
+};
+
+chart.xGrid = function(value) {
+	if (!arguments.length) return xGrid;
+	if (value=="")return chart;
+	xGrid = value;
+	return chart;
+};
+
+chart.yGrid = function(value) {
+	if (!arguments.length) return yGrid;
+	if (value=="")return chart;
+	yGrid = value;
+	return chart;
+};
+
+chart.xGridTicks = function(value) {
+	if (!arguments.length) return xGridTicks;
+	if (value=="")return chart;
+	xGridTicks = value;
+	return chart;
+};
+
+chart.yGridTicks = function(value) {
+	if (!arguments.length) return yGridTicks;
+	if (value=="")return chart;
+	yGridTicks = value;
 	return chart;
 };
 

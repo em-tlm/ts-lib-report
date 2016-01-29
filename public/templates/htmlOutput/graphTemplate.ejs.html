@@ -14,26 +14,38 @@
 
 <!-- CHART CONTAINERID MATCHES DIV ID -->
 <div id = 'graph1'>
-	<h1>Time Series Data</h1>
+	<h1>Time Series Data (Day)</h1>
 	<script>
 	getGraph({
 		data:'[{"date":949399200000,"line1":3,"line2":6,"line3":5},{"date":949404600000,"line1":8,"line2":16,"line3":2},{"date":949421700000,"line1":5,"line2":10,"line3":20},{"date":949442400000,"line1":7,"line2":20,"line3":4},{"date":949460400000,"line1":13,"line2":26,"line3":22},{"date":949485600000,"line1":4,"line2":8,"line3":27}]',
 		width: '500', // cannot use percentage for width/height yet
 		height: '275',
 		yAxisLabel: 'Units',
+		xTicks: '',
+		yTicks: '',
+		xGrid: '',
+		yGrid: 'off',
+		xGridTicks: '',
+		yGridTicks: '',
 		containerId: 'graph1'
 	})
 	</script>
 </div>
 
 <div id = 'graph2'>
-	<h1>Time Series Data</h1>
+	<h1>Time Series Data (Month)</h1>
 	<script>
 	getGraph({
-		data:'[{"date":954583200000,"line1":3,"line2":6,"line3":5},{"date":954757800000,"line1":8,"line2":16,"line3":2},{"date":955811700000,"line1":5,"line2":10,"line3":20},{"date":955948500000,"line1":10,"line2":15,"line3":5},{"date":956677800000,"line1":16,"line2":23,"line3":20},{"date":957626100000,"line1":11,"line2":17,"line3":13},{"date":958144500000,"line1":2,"line2":13,"line3":8},{"date":958576500000,"line1":11,"line2":15,"line3":13},{"date":959094900000,"line1":17,"line2":18,"line3":9},{"date":959893200000,"line1":7,"line2":20,"line3":4},{"date":960429600000,"line1":13,"line2":26,"line3":16},{"date":960451200000,"line1":13,"line2":30,"line3":21},{"date":961207200000,"line1":13,"line2":26,"line3":24},{"date":962269200000,"line1":4,"line2":8,"line3":29}]',
+		data:'[{"date":954752400000,"line1":3,"line2":6,"line3":5},{"date":955189800000,"line1":8,"line2":16,"line3":2},{"date":955811700000,"line1":5,"line2":10,"line3":20},{"date":955948500000,"line1":10,"line2":15,"line3":5},{"date":956677800000,"line1":16,"line2":23,"line3":20},{"date":957626100000,"line1":11,"line2":17,"line3":13},{"date":958144500000,"line1":2,"line2":13,"line3":8},{"date":958576500000,"line1":11,"line2":15,"line3":13},{"date":959094900000,"line1":17,"line2":18,"line3":9},{"date":959893200000,"line1":7,"line2":20,"line3":4},{"date":960429600000,"line1":13,"line2":26,"line3":16},{"date":960451200000,"line1":13,"line2":30,"line3":21},{"date":961207200000,"line1":13,"line2":26,"line3":24},{"date":962269200000,"line1":4,"line2":8,"line3":29}]',
 		width: '500', // cannot use percentage for width/height yet
 		height: '275',
 		yAxisLabel: 'Units',
+	    xTicks: '',
+		yTicks: '',
+		xGrid: 'on',
+		yGrid: 'on',
+		xGridTicks: '',
+		yGridTicks: '',
 		containerId: 'graph2'
 	})
 	</script>
