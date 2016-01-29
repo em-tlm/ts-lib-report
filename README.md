@@ -1,5 +1,7 @@
 # pdf-module
 
+(More info on Confluence: https://tetrascience.atlassian.net/wiki/display/TSD/Generating+PDF+with+Custom+Templates)
+
 1. Install nodejs and npm
 
 2. To Generate a PDF from HTML 
@@ -21,7 +23,7 @@
                   }, 
                   { pageNumbers: "on", timestamp: "on" });
         
-    * see test.js for more output call examples
+    * see examples.js for more output call examples
   
 3. See customTemplate.ejs for template example.
 
