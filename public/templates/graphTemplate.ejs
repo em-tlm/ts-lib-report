@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<script src="d3/d3.min.js"></script>
+
+<!-- INCLUDE THIS FILE TO USE PRESET CHARTS -->
+<script src="../../chartHelper.js"></script>
+
+<!-- MUST INCLUDE CSS FILE FOR PRESET D3 CHARTS -->
+<link href="../../chartStyle.css" rel="stylesheet" type="text/css"></script>
+
+
+<!-- CHART CONTAINERID MATCHES DIV ID -->
+<div id = '<%= graph1.id %>'>
+	<h1><%= graph1.title %></h1>
+	<script>
+	getGraph({
+		data:'<%-JSON.stringify(graph1.data)%>',
+		width: '<%=graph1.width%>', // cannot use percentage for width/height yet
+		height: '<%=graph1.height%>',
+		yAxisLabel: '<%=graph1.yAxisLabel%>',
+		containerId: '<%=graph1.id%>'
+	})
+	</script>
+</div>
+
+<div id = '<%= graph2.id %>'>
+	<h1><%= graph2.title %></h1>
+	<script>
+	getGraph({
+		data:'<%-JSON.stringify(graph2.data)%>',
+		width: '<%=graph2.width%>', // cannot use percentage for width/height yet
+		height: '<%=graph2.height%>',
+		yAxisLabel: '<%=graph2.yAxisLabel%>',
+		containerId: '<%=graph2.id%>'
+	})
+	</script>
+</div>
+
+</body>
+<html>

@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<script src="d3/d3.min.js"></script>
+
+<!-- INCLUDE THIS FILE TO USE PRESET CHARTS -->
+<script src="../../chartHelper.js"></script>
+
+<!-- MUST INCLUDE CSS FILE FOR PRESET D3 CHARTS -->
+<link href="../../chartStyle.css" rel="stylesheet" type="text/css"></script>
+
+
+<!-- CHART CONTAINERID MATCHES DIV ID -->
+<div id = '<%= pie1.id %>' style = "float: left;">
+	<h1><%= pie1.title %></h1>
+	<script>
+	// specify function for chart
+	// data input must be in this format with JSON.stringify
+	getPie({
+		data: '<%-JSON.stringify(pie1.data)%>',
+		width: '<%=pie1.width%>',
+		height: '<%=pie1.height%>',
+		containerId: '<%=pie1.id%>'
+	})
+	</script>
+</div>
+
+<div id = '<%= pie2.id %>' style = "float: left;">
+	<h1><%= pie2.title %></h1>
+	<script>
+	// specify function for chart
+	// data input must be in this format with JSON.stringify
+	getPie({
+		data: '<%-JSON.stringify(pie2.data)%>',
+		width: '<%=pie2.width%>',
+		height: '<%=pie2.height%>',
+		containerId: '<%=pie2.id%>'
+	})
+	</script>
+</div>
+
+<div id = '<%= pie3.id %>' style = "float: left;">
+	<h1><%= pie3.title %></h1>
+	<script>
+	// specify function for chart
+	// data input must be in this format with JSON.stringify
+	getPie({
+		data: '<%-JSON.stringify(pie3.data)%>',
+		width: '<%=pie3.width%>',
+		height: '<%=pie3.height%>',
+		containerId: '<%=pie3.id%>'
+	})
+	</script>
+</div>
+
+<div id = '<%= pie4.id %>' style = "float: left;">
+	<h1><%= pie4.title %></h1>
+	<script>
+	// specify function for chart
+	// data input must be in this format with JSON.stringify
+	getPie({
+		data: '<%-JSON.stringify(pie4.data)%>',
+		width: '<%=pie4.width%>',
+		height: '<%=pie4.height%>',
+		containerId: '<%=pie4.id%>'
+	})
+	</script>
+</div>
+
+
+</body>
+<html>

@@ -13,8 +13,8 @@
 
 
 <!-- CHART CONTAINERID MATCHES DIV ID -->
-<h1><%= pie.title %></h1>
 <div id = '<%= pie.id %>'>
+	<h1><%= pie.title %></h1>
 	<script>
 	// specify function for chart
 	// data input must be in this format with JSON.stringify
@@ -28,8 +28,8 @@
 </div>
 
 
-<h1><%= graph.title %></h1>
 <div id = '<%= graph.id %>'>
+	<h1><%= graph.title %></h1>
 	<script>
 	getGraph({
 		data:'<%-JSON.stringify(graph.data)%>',
@@ -42,8 +42,8 @@
 </div>
 
 
-<h1><%= table.title %></h1>
 <div id = '<%= table.id %>'>
+	<h1><%= table.title %></h1>
 	<script>
 	getTable({
 		data: <%-JSON.stringify(table.data)%>,

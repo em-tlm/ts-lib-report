@@ -13,36 +13,41 @@
 
 
 <!-- CHART CONTAINERID MATCHES DIV ID -->
-<h1>Usage Pie</h1>
 <div id = 'pie'>
+	<h1>Usage Pie</h1>
 	<script>
-	//specify function for chart
+	// specify function for chart
+	// data input must be in this format with JSON.stringify
 	getPie({
-		data: [{"label":"Running","data":20},{"label":"Idle","data":60},{"label":"Stalled","data":20}],
-		containerId: "pie"
+		data: '[{"label":"Running","data":20},{"label":"Idle","data":60},{"label":"Stalled","data":20}]',
+		width: '500',
+		height: '275',
+		containerId: 'pie'
 	})
 	</script>
 </div>
 
 
-<h1>Time Series Data</h1>
 <div id = 'graph'>
+	<h1>Time Series Data</h1>
 	<script>
 	getGraph({
-		data: [{"value":3,"date":949399200000},{"value":8,"date":949404600000},{"value":5,"date":949421700000},{"value":13,"date":949460400000},{"value":4,"date":949485600000}],
-		yAxisLabel: "Units",
-		containerId: "graph"
+		data:'[{"value":3,"date":949399200000},{"value":8,"date":949404600000},{"value":5,"date":949421700000},{"value":13,"date":949460400000},{"value":4,"date":949485600000}]',
+		width: '500', // cannot use percentage for width/height yet
+		height: '275',
+		yAxisLabel: 'Units',
+		containerId: 'graph'
 	})
 	</script>
 </div>
 
 
-<h1>Events Log Table</h1>
 <div id = 'table'>
+	<h1>Events Log Table</h1>
 	<script>
 	getTable({
-		data: [{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"}],
-		containerId: "table"
+		data: [{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"},{"Timestamp":"12:00:00","TSLink":"TS-Link0","Username":"user-name0","Event":"event-0"}],
+		containerId: 'table'
 	})
 	</script>
 </div>

@@ -148,15 +148,16 @@ return chart;
 }
 
 
-//TODO: add more options to graph? such as: multiple series
 
 // time series line graph
+
+//TODO: time formats, ticks, grid/no grid
 var graph = function(){
 
 
 // default values
 var data = [],
-	outerWidth = 800,
+	outerWidth = 500,
 	outerHeight = 450,
 	yAxisLabel = "",
 	outerDiv = "body";
@@ -205,7 +206,6 @@ var chart = function(container){
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	 color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
-
 
 	 var series = color.domain().map(function(name) {
 	    return {

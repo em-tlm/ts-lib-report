@@ -11,6 +11,7 @@ h1 {
 /*DIVS*/
 div {
 	margin-bottom: 50px;
+	margin: 30px;
 	page-break-inside:avoid;
 }
 
