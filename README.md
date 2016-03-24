@@ -12,32 +12,31 @@
   - Debian, Ubuntu
   ```bash
   apt-get install pdftk
-  ``
+  ```
 
   - RPM
-
   https://www.pdflabs.com/docs/install-pdftk-on-redhat-or-centos/
 
 - Cd into directory, and download modules by entering:
 
-```bash
-npm install
-```
+  ```bash
+  npm install
+  ```
 
 - To Generate a PDF from HTML
 
   - see test.js for data entry examples
 
-```javascript
-var pdf = require('./htmlToPdf.js');
-
-pdf.output("path/to/output/file" or "merge", data, {
-    title: "title",
-    timestamp: "on",
-    pageNumbers: "on",
-    type: "table", "pie", "graph", or "provide/name/of/template"
-});
-```
+  ```javascript
+  var pdf = require('./htmlToPdf.js');
+  
+  pdf.output("path/to/output/file" or "merge", data, {
+      title: "title",
+      timestamp: "on",
+      pageNumbers: "on",
+      type: "table", "pie", "graph", or "provide/name/of/template"
+  });
+  ```
   
 - Notes on templates:
   - Does not support JQuery
