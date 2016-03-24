@@ -1,29 +1,51 @@
 # pdf-module
 
-1. Install nodejs and npm
+### Install nodejs and npm
 
-2. Cd into directory, and download modules by entering:
+### Install [pdftk](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)
 
-    npm install
+#### Mac
+```bash
+port install pdftk
+```
 
-3. To Generate a PDF from HTML
-    
-        var pdf = require('./newHTMLtoPDF.js');
+#### Debian, Ubuntu
+```bash
+apt-get install pdftk
+```
 
-    	pdf.output("path/to/output/file" or "merge", data, {
-            title: "title",
-            timestamp: "on", 
-            pageNumbers: "on", 
-            type: "table", "pie", "graph", or "provide/name/of/template"
-            });
-        
-    * see test.js for data entry examples
+#### RPM
+https://www.pdflabs.com/docs/install-pdftk-on-redhat-or-centos/
+
+### Cd into directory, and download modules by entering:
+
+```bash
+npm install
+```
+
+### To Generate a PDF from HTML
+
+```javascript
+var pdf = require('./htmlToPdf.js');
+
+pdf.output("path/to/output/file" or "merge", data, {
+    title: "title",
+    timestamp: "on",
+    pageNumbers: "on",
+    type: "table", "pie", "graph", or "provide/name/of/template"
+});
+```
+
+- see test.js for data entry examples
   
-4. Notes on templates:
-    - Does not support JQuery
-    - Store your template in template folder
-    - Data must be defined in template as: 
-    
-            JSON.parse(<%- JSON.stringify(raw)%>)
+### Notes on templates:
 
-    * see .ejs files in public/templates for examples
+- Does not support JQuery
+- Store your template in template folder
+- Data must be defined in template as:
+
+```javascript
+JSON.parse(<%- JSON.stringify(raw)%>)
+```
+
+  - see .ejs files in public/templates for examples
