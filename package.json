@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "pdf module",
   "dependencies": {
-    "phantomjs": ">=1.9.19",
+    "ejs": ">=2.3.4",
+    "pdf-merge": "0.0.2",
     "phantom": "~0.8.4",
-    "ejs":">=2.3.4"
+    "phantomjs": ">=1.9.19"
   }
 }
