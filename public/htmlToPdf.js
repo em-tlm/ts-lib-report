@@ -1,10 +1,26 @@
+var path = require('path');
+var fs = require('fs');
+var exec = require('child_process').exec;
+var PDFMerge = require('pdf-merge');
+var ejs = require('ejs');
+var phantom = require('phantom');
+var os = require('os');
+
 var PDFs = [];
+
+// console.log(__dirname);
+// console.log(os.platform());
+
+var phantomPath = path.join(
+    __dirname, '../phantomjs-bin',
+    os.platform() === 'darwin' ?
+        'phantomjs-1.9.8-macosx' : 'phantomjs-1.9.8-linux-x86_64',
+    'phantomjs');
+
+console.log(phantomPath);
 
 exports.concat = function(output) {
   // how to deal with page numbers?
-  var fs = require('fs');
-  var exec = require('child_process').exec;
-  var PDFMerge = require('pdf-merge');
   var pdfMerge = new PDFMerge(PDFs, output);
 
   pdfMerge.merge(function(error, result) {
@@ -29,11 +45,6 @@ exports.output = function(out, data, options) {
     out = "output/" + PDFs.length + ".pdf"
     PDFs.push(out);
   }
-  
-  var path = require('path');
-  var ejs = require('ejs');
-  var phantom = require('phantom');
-  var fs = require('fs');
 
 	if (options === undefined) options = {}; // if options undefined, default options
 
@@ -75,7 +86,7 @@ ejs2html(curpath+orightml,
 
 var htmlRendered = curpath + 'htmlOutput/' + orightml + ".html"; // path to rendered file
 
-  phantom.create(function(ph){
+  phantom.create({binary: phantomPath}, function(ph){
   ph.createPage(function(page) {
     page.viewportSize = { width: 1920, height: 1920 };
 

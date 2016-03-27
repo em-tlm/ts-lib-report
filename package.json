@@ -5,7 +5,6 @@
   "dependencies": {
     "ejs": ">=2.3.4",
     "pdf-merge": "0.0.2",
-    "phantom": "~0.8.4",
-    "phantomjs": ">=1.9.19"
+    "phantom": "~0.8.4"
   }
 }
