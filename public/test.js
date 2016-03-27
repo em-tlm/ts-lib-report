@@ -1,11 +1,17 @@
 var pdf = require('./htmlToPdf.js');
 //var arrayPdf = require('./htmlToPdfArray.js');
 
-pdf.output("output/pie.pdf", 
-	[{label:"Running", data:20},
-      {label:"Idle", data:60},
-      {label:"Stalled", data:20}], 
-     {title: "Usage Report", type: "pie", pageNumbers: "on", timestamp: "on"});
+pdf.output("output/pie.pdf", [
+    {label:"Running", data:20},
+    {label:"Idle", data:60},
+    {label:"Stalled", data:20}
+], {
+    title: "Usage Report", type: "pie",
+    pageNumbers: "on", timestamp: "on",
+    success: function() {
+        console.log("output/pie.pdf rendered");
+    }
+});
 
 pdf.output("merge", 
      [{xtitle: "date"}, {ytitle: "value"}, // axis lables for graphs, use "" for blank

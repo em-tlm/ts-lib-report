@@ -58,6 +58,9 @@ exports.output = function(out, data, options) {
             orightml = options.type;
         }
     } else {
+        if (options.fail) {
+            options.fail("Error: 'type' undefined");
+        }
         console.log("ERROR: 'type' undefined");
         return;
     }
@@ -102,7 +105,8 @@ exports.output = function(out, data, options) {
                                 "<span style='float:right'>"
                                 + pageNum + "</span></h1>";
                         })
-                    }};
+                    }
+                };
             }
             if (options.timestamp === "on") {
                 if (headerObj === undefined) {
@@ -114,7 +118,8 @@ exports.output = function(out, data, options) {
                                     "<span style='float:left'>"
                                     + new Date() + "</span></h1>";
                             })
-                        }};
+                        }
+                    };
                 } else {
                     headerObj.header.contents =
                         ph.callback(function(pageNum, numPages) {
@@ -142,11 +147,19 @@ exports.output = function(out, data, options) {
             page.open(htmlRendered, function(status) {
                 if (status === "success") {
                     console.log("Page Opened");
-                    page.render(out,function(){
-                        console.log('Page Rendered');
+                    page.render(out, function() {
+                        if (options.success) {
+                            options.success();
+                        } else {
+                            console.log('Page Rendered');
+                        }
                     });
                 } else {
-                    console.log("ERROR: Not a valid template");
+                    if (options.fail) {
+                        options.fail("ERROR: Not a valid template");
+                    } else {
+                        console.log("ERROR: Not a valid template");
+                    }
                 }
                 ph.exit();
             });
