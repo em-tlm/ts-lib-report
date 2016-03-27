@@ -5,18 +5,18 @@
 - Install [pdftk](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)
 
   - Mac
-  ```bash
-  port install pdftk
-  ```
+    ```bash
+    port install pdftk
+    ```
 
   - Debian, Ubuntu
-  ```bash
-  apt-get install pdftk
-  ```
+    ```bash
+    apt-get install pdftk
+    ```
 
   - RPM
 
-  https://www.pdflabs.com/docs/install-pdftk-on-redhat-or-centos/
+    https://www.pdflabs.com/docs/install-pdftk-on-redhat-or-centos/
 
 - Cd into directory, and download modules by entering:
 
@@ -25,8 +25,6 @@
   ```
 
 - To Generate a PDF from HTML
-
-  - see test.js for data entry examples
 
   ```javascript
   var pdf = require('./htmlToPdf.js');
@@ -38,6 +36,8 @@
       type: "table", "pie", "graph", or "provide/name/of/template"
   });
   ```
+
+  - see test.js for data entry examples
   
 - Notes on templates:
   - Does not support JQuery
