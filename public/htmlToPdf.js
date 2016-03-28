@@ -153,6 +153,7 @@ exports.output = function(out, data, options) {
                         } else {
                             console.log('Page Rendered');
                         }
+                        ph.exit();
                     });
                 } else {
                     if (options.fail) {
@@ -160,8 +161,8 @@ exports.output = function(out, data, options) {
                     } else {
                         console.log("ERROR: Not a valid template");
                     }
+                    ph.exit();
                 }
-                ph.exit();
             });
         });
     });
