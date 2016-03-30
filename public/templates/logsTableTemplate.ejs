@@ -56,10 +56,10 @@ system log (think about /var/authlog in linux)
           tr = document.createElement('tr'); // for each key
           for (var j = 0; j < arr.length; j++) {
             td = document.createElement('td');
-            td.appendChild(document.createTextNode(rawdata[i][arr[j]]));
+            td.innerHTML = rawdata[i][arr[j]];
             tr.appendChild(td);
           }
-           body.appendChild(tr);
+          body.appendChild(tr);
         }
 
         document.getElementById("table").appendChild(body);
