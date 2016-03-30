@@ -10,8 +10,8 @@ system log (think about /var/authlog in linux)
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="jquery/jquery.min.js"></script>
+  <link href="bootstrap/bootstrap.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -30,7 +30,7 @@ system log (think about /var/authlog in linux)
     <thead id="head">
 
       <script> 
-        var rawdata = JSON.parse(<%- JSON.stringify(raw)%>);
+        var rawdata = <%- JSON.stringify(raw)%>;
         // build table head
         var head = document.getElementById("head");
         var arr = Object.keys(rawdata[0]); // keys from table

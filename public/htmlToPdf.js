@@ -84,7 +84,10 @@ exports.output = function(out, data, options) {
 
     // call ejs2html to generate PDF
     if (options.title === undefined) options.title = "";
-    ejs2html(curpath+orightml, data);
+    ejs2html(curpath+orightml, {
+        pagename: options.title,
+        raw:data
+    });
 
     // path to rendered file
     var htmlRendered = curpath + 'htmlOutput/' + orightml + ".html";
