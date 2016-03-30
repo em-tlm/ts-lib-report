@@ -1,0 +1,54 @@
+<head>
+    <link href="bootstrap/bootstrap.css" rel="stylesheet" type="text/css">
+    <style>
+        .flot-chart {
+            width: 350px;
+            height: 200px;
+        }
+    </style>
+
+    <script src="jquery/jquery.min.js"></script>
+    <script src="flot/jquery.flot.js"></script>
+    <script src="flot/jquery.flot.time.min.js"></script>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-md-5 col-sm-5 col-xs-5">
+            <div>
+                <h4>Logs:</h4>
+                <% for(var i=0; i<logs.length; i++) { %>
+                <p><%= logs[i] %></p>
+                <% } %>
+            </div>
+        </div>
+        <div class="col-md-7 col-sm-7 col-xs-7">
+            <div>
+                <h4>Graphs:</h4>
+                <% for(var i=0; i<feeds.length; i++) { %>
+                <div id="plot<%= i%>" class="flot-chart"></div>
+                <% } %>
+            </div>
+            <div>
+                <h4>Notes:</h4>
+                <% for(var i=0; i<notes.length; i++) { %>
+                <p><%= notes[i] %></p>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        var options = {
+            xaxis: {
+                mode     : "time",
+                timezone : "browser"
+            }
+        };
+        <% for(var i=0; i<feeds.length; i++) { %>
+        $.plot("#plot<%= i%>", [<%- JSON.stringify(feeds[i]) %>], options);
+        <% } %>
+    </script>
+</body>
