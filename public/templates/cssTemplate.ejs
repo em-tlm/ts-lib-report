@@ -10,11 +10,15 @@
     <script src="jquery/jquery.min.js"></script>
     <script src="flot/jquery.flot.js"></script>
     <script src="flot/jquery.flot.time.min.js"></script>
+    <script src="flot/jquery.flot.axislabels.min.js"></script>
 </head>
 
 <body>
     <div class="row">
         <div class="col-md-5 col-sm-5 col-xs-5">
+            <div>
+                <img src="images/css_logo.png" width="150">
+            </div>
             <div>
                 <h4>Logs:</h4>
                 <% for(var i=0; i<raw.logs.length; i++) { %>
@@ -42,12 +46,17 @@
 
     <script>
         var options = {
+            axisLabels: {
+                show: true
+            },
             xaxis: {
                 mode     : "time",
                 timezone : "browser"
-            }
+            },
+            xaxes: [{axisLabel: '24-hour clock time (hh:mm)'}]
         };
         <% for(var i=0; i<raw.feeds.length; i++) { %>
+        options.yaxes = <%- JSON.stringify(raw.feeds[i].yaxes) %>;
         $.plot("#plot<%= i%>", [<%- JSON.stringify(raw.feeds[i]) %>], options);
         <% } %>
     </script>

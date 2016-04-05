@@ -25,7 +25,8 @@ pdf.output("output/css.pdf", {
         name: 'Temperature',
         unit: 'degC',
         preferredUnit: 'degC',
-        feedId: '716238430b15a46220d8d2a71819ce47a3d10756'
+        feedId: '716238430b15a46220d8d2a71819ce47a3d10756',
+        yaxes: [{axisLabel: 'Temperature(°C)'}]
     },{
         data: [
             [1459346339160, 22.1],
@@ -37,9 +38,10 @@ pdf.output("output/css.pdf", {
         color: '#00ff00',
         paramId: 'pressure',
         name: 'Pressure',
-        unit: 'degC',
-        preferredUnit: 'degC',
-        feedId: '716238430b15a46220d8d2a71819ce47a3d10756'
+        unit: 'psi',
+        preferredUnit: 'psi',
+        feedId: '716238430b15a46220d8d2a71819ce47a3d10756',
+        yaxes: [{axisLabel: 'Pressure(psi)'}]
     }]
 }, {
     title: "Cycle Report", type: "cssTemplate.ejs",

@@ -10,11 +10,15 @@
     <script src="jquery/jquery.min.js"></script>
     <script src="flot/jquery.flot.js"></script>
     <script src="flot/jquery.flot.time.min.js"></script>
+    <script src="flot/jquery.flot.axislabels.min.js"></script>
 </head>
 
 <body>
     <div class="row">
         <div class="col-md-5 col-sm-5 col-xs-5">
+            <div>
+                <img src="images/css_logo.png" width="150">
+            </div>
             <div>
                 <h4>Logs:</h4>
                 
@@ -56,15 +60,21 @@
 
     <script>
         var options = {
+            axisLabels: {
+                show: true
+            },
             xaxis: {
                 mode     : "time",
                 timezone : "browser"
-            }
+            },
+            xaxes: [{axisLabel: '24-hour clock time (hh:mm)'}]
         };
         
-        $.plot("#plot0", [{"data":[[1459346339160,22.1],[1459346337155,22.1],[1459346335148,22.1],[1459346334140,21.9],[1459346330114,21]],"color":"#ff0000","paramId":"temperature","name":"Temperature","unit":"degC","preferredUnit":"degC","feedId":"716238430b15a46220d8d2a71819ce47a3d10756"}], options);
+        options.yaxes = [{"axisLabel":"Temperature(°C)"}];
+        $.plot("#plot0", [{"data":[[1459346339160,22.1],[1459346337155,22.1],[1459346335148,22.1],[1459346334140,21.9],[1459346330114,21]],"color":"#ff0000","paramId":"temperature","name":"Temperature","unit":"degC","preferredUnit":"degC","feedId":"716238430b15a46220d8d2a71819ce47a3d10756","yaxes":[{"axisLabel":"Temperature(°C)"}]}], options);
         
-        $.plot("#plot1", [{"data":[[1459346339160,22.1],[1459346337155,22.1],[1459346335148,22.1],[1459346334140,21.9],[1459346330114,21]],"color":"#00ff00","paramId":"pressure","name":"Pressure","unit":"degC","preferredUnit":"degC","feedId":"716238430b15a46220d8d2a71819ce47a3d10756"}], options);
+        options.yaxes = [{"axisLabel":"Pressure(psi)"}];
+        $.plot("#plot1", [{"data":[[1459346339160,22.1],[1459346337155,22.1],[1459346335148,22.1],[1459346334140,21.9],[1459346330114,21]],"color":"#00ff00","paramId":"pressure","name":"Pressure","unit":"psi","preferredUnit":"psi","feedId":"716238430b15a46220d8d2a71819ce47a3d10756","yaxes":[{"axisLabel":"Pressure(psi)"}]}], options);
         
     </script>
 </body>
