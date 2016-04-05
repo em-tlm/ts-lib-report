@@ -56,7 +56,7 @@
             xaxes: [{axisLabel: '24-hour clock time (hh:mm)'}]
         };
         <% for(var i=0; i<raw.feeds.length; i++) { %>
-        options.yaxes = <%- JSON.stringify(raw.feeds[i].yaxes) %>;
+        options.yaxes = [{axisLabel: '<%- raw.feeds[i].yAxisLabel %>'}];
         $.plot("#plot<%= i%>", [<%- JSON.stringify(raw.feeds[i]) %>], options);
         <% } %>
     </script>
