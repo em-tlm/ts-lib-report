@@ -9,16 +9,18 @@ exports.createPdf = function(file, options) {
     var html_path = path.resolve(options.htmlPath) ||
             template.replace(/\.ejs$/i, '.html');
     var sitepage, phInstance, content;
-
-    return Q.all([ejs2html(template, options.data),
-                  phantom.create()])
-        .spread(function(html, instance) {
-            content = html, phInstance = instance;
+    return ejs2html(template, options.data)
+        .then(function(html) {
+            content = html;
             if (options.outputHtml) {
                 fs.writeFile(html_path, content, function(err) {
                     if (err) { console.log(err); }
                 });
             }
+            return phantom.create();
+        })
+        .then(function(instance) {
+            phInstance = instance;
             return instance.createPage();
         })
         .then(function(page) {
