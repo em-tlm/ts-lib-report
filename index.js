@@ -6,22 +6,24 @@ var Q = require('q');
 var lodash = require('lodash');
 
 exports.createPdf = function(file, options) {
-    lodash.defaultsDeep(options, {
+    var defaultOptions = {
         template: null,
         htmlPath: null,
         data: null,
+        outputHtml: false,
         phantomProperties: {
+            // viewportSize: { width: 1920, height: 1920 },
             paperSize: {
                 format: 'Letter',
                 orientation: 'portrait',
                 margin: '1cm'
             },
-            viewportSize: { width: 1920, height: 1920 },
             zoomFactor: 1
         }
-    });
+    };
+    lodash.defaultsDeep(options, defaultOptions);
     var template = path.resolve(options.template);
-    var html_path = path.resolve(options.htmlPath) ||
+    var html_path = options.htmlPath && path.resolve(options.htmlPath) ||
             template.replace(/\.ejs$/i, '.html');
     var sitepage, phInstance, content;
     return ejs2html(template, options.data)
@@ -49,6 +51,8 @@ exports.createPdf = function(file, options) {
         })
         .then(function() {
             return sitepage.render(file);
+        }).then(function() {
+            return file;
         })
         .fin(function() {
             phInstance.exit();
