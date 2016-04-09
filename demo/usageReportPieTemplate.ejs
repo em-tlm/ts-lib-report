@@ -1,0 +1,26 @@
+<!-- new version using d3-->
+<!-- for example: instrumentation usage report, 20% of the time is running, 80% is in idle -->
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <style>
+        .content {height:100%}
+        .arc text {
+          font: 10px sans-serif;
+          text-anchor: middle;
+        }
+        .arc path {
+          stroke: #fff;
+        }
+      </style>
+    </head>
+    <body>
+      <h1 align="middle"> <font face="Arial" size="5"></font><%= title %></h1>
+      <script src="./lib/d3/d3.min.js"></script>
+      <script>
+        var rawdata = <%- JSON.stringify(data) %>;
+      </script>
+      <script src="./usageReportPieTemplate.js"></script>
+    </body>
+</html>

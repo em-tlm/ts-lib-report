@@ -1,0 +1,48 @@
+<!--new version using d3-->
+<!--time series data 
+with proper label, legend and unit on axis
+different color for different sensor streams-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            *{margin:20;padding:0}
+            body {
+              font: 10px sans-serif;
+            }
+            .axis path,
+            .axis line {
+              fill: none;
+              stroke: #000;
+              shape-rendering: crispEdges;
+            }
+            .x.axis path {
+              display: none;
+            }
+            .line {
+              fill: none;
+              stroke: steelblue;
+              stroke-width: 1.5px;
+            }
+            .grid .tick {
+                stroke: lightgrey;
+                opacity: 0.7;
+            }
+            .grid path {
+                  stroke-width: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 align="middle"><%= title %></h1>
+        <script src="../demo/lib/d3/d3.min.js"></script>
+        <script>
+            var rawdata = <%- JSON.stringify(data) %>;
+            var xTitle = <%- JSON.stringify(xtitle) %>;
+            var yTitle = <%- JSON.stringify(ytitle) %>;
+            var dim = <%- JSON.stringify(_dim) %>;
+        </script>
+        <script src="../demo/timeSeriesTemplate.js"></script>
+    </body>
+</html>

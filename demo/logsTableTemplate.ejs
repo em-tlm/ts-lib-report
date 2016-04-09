@@ -1,0 +1,45 @@
+<!---
+event log (a list of events)
+each event has timestamp, related tslink's name, username (email) and an unstructured  data field. 
+system log (think about /var/authlog in linux)
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../demo/lib/jquery/jquery.min.js"></script>
+        <link href="../demo/lib/bootstrap/bootstrap.css"
+              rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <% var arr = (data && data.length > 0) ? Object.keys(data[0]) : []; %>
+        <div align="middle" class="container" width="60%">
+            <h1 align="middle"
+                style="font-family: Arial; font-size: 1.5em;
+                       color: black; font-weight: bold;">
+                <%- pagename %>
+            </h1>
+            <div class="bodycontainer scrollable"> 
+                <table class="table table-striped header-fixed
+                              table-scrollable">
+                    <thead>
+                        <% for (var i = 0; i < arr.length; i++) { %>
+                           <th> <%= arr[i] %> </th>
+                        <% } %>
+                    </thead>
+                    <tbody id="body">
+                        <% for (var i = 0; i < data.length; i++) { %>
+                           <tr>
+                               <% for (var j = 0; j < arr.length; j++) { %>
+                                  <td> <%= data[i][arr[j]] %> </td>
+                               <% } %>
+                           </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
