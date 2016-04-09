@@ -4,6 +4,7 @@
   "description": "pdf module",
   "dependencies": {
     "ejs": ">=2.3.4",
+    "lodash": "^4.9.0",
     "phantom": "^2.0.10",
     "q": "^1.4.1"
   }
