@@ -11,22 +11,28 @@ exports.createPdf = function(file, options) {
         htmlPath: null,
         data: null,
         outputHtml: false,
-        phantomProperties: {
-            // viewportSize: { width: 1920, height: 1920 },
-            paperSize: {
-                format: 'Letter',
-                orientation: 'portrait',
-                margin: '1cm'
-            },
-            zoomFactor: 1
+        dimension: {
+            dpi: 96.0,
+            oriention: 'portrait',
+            marginInInch: 0.3
         }
     };
     lodash.defaultsDeep(options, defaultOptions);
+    var dim = calDimension(options.dimension);
+    var phantomOpts = {
+        viewportSize: { width: dim.width, height: dim.height },
+        paperSize: {
+            width: dim.width + 'px',
+            height: dim.height + 'px',
+            margin: dim.margin + 'px'
+        },
+        zoomFactor: 1
+    };
     var template = path.resolve(options.template);
     var html_path = options.htmlPath && path.resolve(options.htmlPath) ||
             template.replace(/\.ejs$/i, '.html');
     var sitepage, phInstance, content;
-    return ejs2html(template, options.data)
+    return ejs2html(template, lodash.extend(options.data, {_dim: dim}))
         .then(function(html) {
             content = html;
             if (options.outputHtml) {
@@ -42,7 +48,7 @@ exports.createPdf = function(file, options) {
         })
         .then(function(page) {
             sitepage = page;
-            return Q.all(lodash.map(options.phantomProperties, function(value, key) {
+            return Q.all(lodash.map(phantomOpts, function(value, key) {
                 return page.property(key, value);
             }));
         }).then(function() {
@@ -57,6 +63,18 @@ exports.createPdf = function(file, options) {
         .fin(function() {
             phInstance.exit();
         });
+};
+
+var calDimension = function(dimension) {
+    var widthInch = 8.5, heightInch = 11;
+    var width = Math.round(widthInch * dimension.dpi);
+    var height = Math.round(heightInch * dimension.dpi);
+    var margin = Math.round(dimension.marginInInch * dimension.dpi);
+    var temp;
+    if (dimension.orientation === 'landscape') {
+        temp = width; width = height; height = temp;
+    }
+    return { width: width, height: height, margin: margin };
 };
 
 function ejs2html(path, data) {
