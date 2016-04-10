@@ -8,7 +8,8 @@ tsReport.createPdf('output/demo.pdf', {
     htmlPath: 'output/demo.html',
     outputHtml: true,
     dimension: {
-        marginInInch: 0.7
+        marginInInch: 0.7,
+        dpi: 72
     }
 }).then(function(file) {
     console.log(file);
@@ -100,9 +101,10 @@ tsReport.createPdf('output/pie.pdf', {
     console.log(file);
 });
 
-tsReport.createPdf('output/css.pdf', {
+tsReport.createPdf('output/cssTemplate.pdf', {
     template: 'demo/cssTemplate.ejs',
-    outputHtml: false,
+    htmlPath: 'output/cssTemplate.html',
+    outputHtml: true,
     dimension: {
         orientation: 'landscape'
     },
