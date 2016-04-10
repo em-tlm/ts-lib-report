@@ -59,11 +59,11 @@ document.querySelector('body').appendChild(para);
 ### Create Pdf
 
 ```javascript
-var tsReport = require('tsReport');
+var tsReport = require('ts-report');
 tsReport.createPdf('demo.pdf', {
     template: 'demo.ejs',
     data: {val: 'hello'},
-    outputHtml: true,
+    outputHtml: true
 }).then(function(file) {
     console.log(file);
 });
@@ -109,6 +109,9 @@ File path of the output pdf. The filename must end with `.pdf`.
       marginInInch: 0.4
   }
   ```
+
+  dpi: Use 72.0 if pdf is too large.
+
   orientation: 'portrait' or 'landscape'
 
   - waitBeforeRendering (optional)
