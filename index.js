@@ -14,7 +14,7 @@ exports.createPdf = function(file, options) {
         waitBeforeRendering: 0,
         dimension: {
             dpi: 96.0,
-            oriention: 'portrait',
+            orientation: 'portrait',
             marginInInch: 0.4
         }
     };
