@@ -105,6 +105,7 @@ tsReport.createPdf('output/cssTemplate.pdf', {
     template: 'demo/cssTemplate.ejs',
     htmlPath: 'output/cssTemplate.html',
     outputHtml: true,
+    waitBeforeRendering: 100,
     dimension: {
         orientation: 'landscape'
     },

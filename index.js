@@ -11,6 +11,7 @@ exports.createPdf = function(file, options) {
         htmlPath: null,
         data: null,
         outputHtml: false,
+        waitBeforeRendering: 0,
         dimension: {
             dpi: 96.0,
             oriention: 'portrait',
@@ -54,6 +55,9 @@ exports.createPdf = function(file, options) {
         }).then(function() {
             return sitepage.setContent(
                 content, 'file://' + html_path);
+        })
+        .then(function() {
+            return Q.delay(options.waitBeforeRendering);
         })
         .then(function() {
             return sitepage.render(file);
