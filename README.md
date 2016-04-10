@@ -10,7 +10,7 @@ $ npm install tetrascience/ts-report --save
 ## Usage
 
 ### Create a ejs template file
-```ejs
+```html
 <!-- demo.ejs -->
 <!DOCTYPE html>
 <html>
