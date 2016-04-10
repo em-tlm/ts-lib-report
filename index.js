@@ -14,7 +14,7 @@ exports.createPdf = function(file, options) {
         dimension: {
             dpi: 96.0,
             oriention: 'portrait',
-            marginInInch: 0.3
+            marginInInch: 0.4
         }
     };
     lodash.defaultsDeep(options, defaultOptions);
