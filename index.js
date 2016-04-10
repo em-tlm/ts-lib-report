@@ -65,7 +65,7 @@ exports.createPdf = function(file, options) {
             return file;
         })
         .fin(function() {
-            phInstance.exit();
+            phInstance && phInstance.exit();
         });
 };
 
