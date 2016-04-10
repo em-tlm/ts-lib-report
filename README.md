@@ -109,7 +109,7 @@ File path of the output pdf. The filename must end with `.pdf`.
       marginInInch: 0.4
   }
   ```
-    - orientation: 'portrait' or 'landscape'
+  orientation: 'portrait' or 'landscape'
 
   - waitBeforeRendering (optional)
 
