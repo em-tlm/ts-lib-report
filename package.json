@@ -1,6 +1,6 @@
 {
   "name": "ts-report",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "pdf module",
   "dependencies": {
     "ejs": ">=2.3.4",
