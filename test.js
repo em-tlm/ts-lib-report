@@ -13,6 +13,8 @@ tsReport.createPdf('output/demo.pdf', {
     }
 }).then(function(file) {
     console.log(file);
+}, function(err) {
+    console.log(err);
 });
 
 tsReport.createPdf('output/table.pdf', {
@@ -48,6 +50,8 @@ tsReport.createPdf('output/table.pdf', {
     outputHtml: true
 }).then(function(file) {
     console.log(file);
+}, function(err) {
+    console.log(err);
 });
 
 tsReport.createPdf('output/lineGraph.pdf', {
@@ -67,6 +71,8 @@ tsReport.createPdf('output/lineGraph.pdf', {
     }
 }).then(function(file) {
     console.log(file);
+}, function(err) {
+    console.log(err);
 });
 
 tsReport.createPdf('output/time.pdf', {
@@ -85,6 +91,8 @@ tsReport.createPdf('output/time.pdf', {
     }
 }).then(function(file) {
     console.log(file);
+}, function(err) {
+    console.log(err);
 });
 
 tsReport.createPdf('output/pie.pdf', {
@@ -99,6 +107,8 @@ tsReport.createPdf('output/pie.pdf', {
     }
 }).then(function(file) {
     console.log(file);
+}, function(err) {
+    console.log(err);
 });
 
 tsReport.createPdf('output/cssTemplate.pdf', {
@@ -157,4 +167,6 @@ tsReport.createPdf('output/cssTemplate.pdf', {
     }
 }).then(function(file) {
     console.log(file);
+}, function(err) {
+    console.log(err);
 });

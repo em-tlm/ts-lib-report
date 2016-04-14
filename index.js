@@ -62,7 +62,11 @@ exports.createPdf = function(file, options) {
         .then(function() {
             return sitepage.render(file);
         }).then(function() {
-            return file;
+            if (fs.existsSync(file)) {
+                return file;
+            } else {
+                return Q.reject(new Error('Render failed: ' + file));
+            }
         })
         .fin(function() {
             phInstance && phInstance.exit();
