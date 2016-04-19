@@ -37,7 +37,11 @@
             <div>
                 <h4>Notes:</h4>
                 <% for(var i=0; i<notes.length; i++) { %>
-                <p><%= notes[i] %></p>
+                <p>
+                    <%= notes[i].note %>
+                    <br>
+                    <small>(<%= notes[i].name %>, <%= notes[i].time %>)</small>
+                </p>
                 <% } %>
             </div>
         </div>
