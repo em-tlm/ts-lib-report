@@ -77,6 +77,8 @@ tsReport.createPdf('output/lineGraph.pdf', {
 
 tsReport.createPdf('output/time.pdf', {
     template: 'demo/timeSeriesTemplate.ejs',
+    outputHtml: true,
+    htmlPath: 'output/time.html',
     data: {
         title: "Time v Value",
         xtitle: "date",
@@ -95,8 +97,27 @@ tsReport.createPdf('output/time.pdf', {
     console.log(err);
 });
 
+
+tsReport.createPdf('output/utilizationSingle.pdf', {
+    template: 'demo/utilizationSingle.ejs',
+    outputHtml: true,
+    htmlPath: 'output/utilizationSingle.html',
+    data: require('./seed.js'),
+    dimension: {
+        marginInInch: 0,
+        dpi: 72
+    }    
+}).then(function(file) {
+    console.log(file);
+}, function(err) {
+    console.log(err);
+});
+
+
 tsReport.createPdf('output/pie.pdf', {
     template: 'demo/usageReportPieTemplate.ejs',
+    outputHtml: true,
+    htmlPath: 'output/pie.html',
     data: {
         title: "Usage Report",
         data: [

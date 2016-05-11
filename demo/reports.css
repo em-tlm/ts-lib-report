@@ -1,0 +1,22 @@
+
+.report-wrapper {
+  width: 816px;
+  height: 1056px;
+  color: #4f545d;
+  padding: 2rem;
+  font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+}
+
+.report-wrapper p {
+  color: #4f545d;
+}
+
+h1, h2, h3 {
+  font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+  color: #4f545d;
+}
+
+.report-wrapper h1 {
+  font-size: 3rem;
+}
+

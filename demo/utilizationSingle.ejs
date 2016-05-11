@@ -1,0 +1,364 @@
+<% var get12HourTime = function(time){
+  if(time > 12){
+    return time - 12;
+  } else {
+    return time;
+  }
+} %>
+<% var get12HourMeridiem = function(time){
+  if(time > 12){
+    return 'PM'
+  } else {
+    return 'AM'
+  }
+} %>
+
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../demo/app.css">
+  </head>
+  <style>
+    html {
+      font-size: 8px;
+    }
+    body {
+      background: inherit;
+    }
+    .report-wrapper {
+      width: 74rem;
+      height: 99rem;
+      color: #4f545d!important;
+      padding: 2rem;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    p {
+      font-size: 1rem;
+    }
+    h1, h2, h3 {
+      font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+    }
+    h1 {
+      font-weight: 100;
+    }
+    h3 {
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+    .report-wrapper h1 {
+      font-size: 4rem;
+    }
+
+    .text-small {
+      font-size: 0.9rem;
+    }
+ 
+    .text-operating {
+      color: #25ad5c;
+    }
+
+    .text-idle {
+      color: #666;
+    }
+
+    .text-off {
+      color: #ccc;
+    }
+
+    .donut-key {
+      margin-top: -150px;
+    }
+
+    .key {
+      font-size: 4rem;
+      font-weight: 100;
+      margin-top: 5.5rem;
+    }
+
+    .value {
+      font-weight: 100;
+      font-size: 2.5rem;
+      color: #25ad5c;
+    }
+
+    .value-description {
+      color: #999;
+    }
+
+    .key-unit {
+      font-size: 1rem;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .axis {
+      font: 10px sans-serif;
+    }
+
+    .axis path,
+    .axis line {
+      fill: none;
+      shape-rendering: crispEdges;
+    }
+
+    .x.axis path {
+      display: none;
+    }
+
+    text {
+      font-size: 1rem;
+      fill: #666;
+    }
+
+    .tick line {
+      stroke: #ddd;
+    }
+
+    .vcenter {
+      position: absolute;
+      top: 50%;
+      transform: translateX(-50%);
+    }
+
+  </style>
+  <body>
+    <div class="report-wrapper vspace">
+      <div class="row vspace">
+        <div class="col-xs-8 vspace">
+          <h1>Utilization Report</h1>
+          <div>
+            <p>Utilization and analytics data of <%= meta.instrument %></p>
+            <p><strong><%= meta.dateRange %></strong></p>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <p class="text-small">Date Range: <%= meta.dateRange %></p>
+          <p class="text-small">Reporting Device: <%= meta.reportingDevice %></p>
+          <p class="text-small">Report Generated: <%= meta.generationTimestamp %></p>
+        </div>
+      </div>
+      <div class="vspace vspace-xlarge">
+        <div class="row">
+          <div class="col-xs-4 text-center text-operating" style="height: 150px;">
+            <div id="donut" class="text-center"></div>
+            <div class="donut-key">
+              <div class="key">5.33</div>
+              <div class="key-label"><h3>Total Hours Usage</h3></div>
+            </div>
+          </div>
+          <div class="col-xs-8">
+            <div class="row">
+              <div class="col-xs-4 text-center text-operating">
+                <div class="key">
+                  <%= operatingPercentage %><span class="key-unit">%</span>
+                  <div class="key-label"><h3>Operating</h3></div>
+                </div>
+              </div>
+              <div class="col-xs-4 text-center text-idle">
+                <div class="key">
+                  <%= idlePercentage %><span class="key-unit">%</span>
+                  <div class="key-label"><h3>Idle</h3></div>
+                </div>
+              </div>
+              <div class="col-xs-4 text-center text-off">
+                <div class="key">
+                  <%= offPercentage %><span class="key-unit">%</span>
+                  <div class="key-label"><h3>Off</h3></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3 vspace">
+            <h3>Power Range</h3>
+            <div class="value">
+              <%= powerRange.min %> <span class="key-unit"><%= powerRange.unit %></span>
+              &nbsp;<span class="key-unit">to</span>&nbsp;
+              <%= powerRange.max %> <span class="key-unit"><%= powerRange.unit %></span>
+            </div>
+            <p class="value-description">Range of power consumption between idle and full use</p>
+          </div>
+          <div class="col-xs-3 col-xs-offset-1 vspace">
+            <h3>Energy Consumed</h3>
+            <div class="value">
+              <%= energyConsumed.value %>&nbsp;<span class="key-unit"><%= energyConsumed.unit %></span>
+            </div>
+            <p class="value-description">Total energy consumed</p>
+          </div>
+          <div class="col-xs-3 col-xs-offset-1 vspace">
+            <h3>Total Idle Hours</h3>
+            <div class="value"><%= totalIdleHours.value %></div>
+            <p class="value-description">Number of hours instrument is not in idle state</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3 vspace">
+            <h3>Most Often Used</h3>
+            <div class="value">
+              <%= get12HourTime(mostOftenUsed.min) %> <span class="key-unit"><%= get12HourMeridiem(mostOftenUsed.min) %></span>
+              &nbsp;<span class="key-unit">to</span>&nbsp;
+              <%= get12HourTime(mostOftenUsed.max) %> <span class="key-unit"><%= get12HourMeridiem(mostOftenUsed.max) %></span>
+            </div>
+            <p class="value-description">Times this instrument is used most often during work hours</p>
+          </div>
+          <div class="col-xs-3 col-xs-offset-1 vspace">
+            <h3>Least Often Used</h3>
+            <div class="value">
+              <%= get12HourTime(leastOftenUsed.min) %>&nbsp;<span class="key-unit"><%= get12HourMeridiem(leastOftenUsed.min) %></span>
+              &nbsp;<span class="key-unit">to</span>&nbsp;
+              <%= get12HourTime(leastOftenUsed.max) %>&nbsp;<span class="key-unit"><%= get12HourMeridiem(leastOftenUsed.max) %></span>
+            </div>
+            <p class="value-description">Times this instrument used least during working hours</p>
+          </div>
+          <div class="col-xs-3 col-xs-offset-1 vspace">
+            <h3>Off Hours Usage</h3>
+            <div class="value">
+              <%= offHoursUsage.value %>&nbsp;<span class="key-unit"><%= offHoursUsage.unit %></span>
+            </div>
+            <p class="value-description">Number of hours instrument is not in idle state</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <div>
+              <h3>Average utilization per 2-hour interval</h3>
+              <p>Between time period <%= meta.dateRange %></p>
+            </div>
+            <div id="barchart"></div>
+          </div>
+        </div>        
+      </div>
+      <div class="row">
+        <div class="col-xs-9">
+          <p style="margin-top: 1rem; font-size: 1.2rem;">
+            <strong>Tel</strong> 1-844-506-3965
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <strong>Email</strong> info@tetrascience.com
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <strong>Twitter</strong> TetraScience
+          </p>
+        </div>
+        <div class="col-xs-3"><img src="../demo/images/util_logo.png" class="img-fill"></div>
+      </div>
+    </div>
+    <script src="../demo/lib/jquery/jquery.min.js"></script>
+    <script src="../demo/lib/d3/d3.min.js"></script>    
+    <script type="text/javascript">
+
+      // donut graph
+
+      var postUtil = function(seedData){ 
+        $.post('http://localhost:2016/generate_report/utilization', seedData);
+      };
+
+      var renderDonut = function () {
+        var data = {
+          status: [<%= idlePercentage %>, <%= operatingPercentage %>, <%= offPercentage %>],
+        };
+
+        var width = 150,
+            height = 150,
+            radius = Math.min(width, height) / 2;
+
+        var color = d3.scale.ordinal()
+          .domain(["Operating", "Idle", "Off"])
+          .range(["#39b54a", "#4f545d" , "#999"]);
+
+        var pie = d3.layout.pie()
+            .padAngle(.02)
+            .sort(null);
+
+        var arc = d3.svg.arc()
+            .innerRadius(radius - 10)
+            .outerRadius(radius - 5);
+
+        var svg = d3.select("#donut").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+        var path = svg.selectAll("path")
+            .data(pie(data.status))
+          .enter().append("path")
+            .attr("fill", function(d, i) { return color(i); })
+            .attr("d", arc);        
+      }
+
+      renderDonut();
+
+      // bar chart
+
+
+      var renderBarChart = function () {
+
+        var margin = {top: 20, right: 20, bottom: 60, left: 40},
+            width = 500 - margin.left - margin.right,
+            height = 220 - margin.top - margin.bottom;
+
+        var x = d3.scale.ordinal()
+            .rangeRoundBands([0, width], 0.7)
+
+        var y = d3.scale.linear()
+            .range([height, 0]);
+
+        var xAxis = d3.svg.axis()
+            .scale(x)
+            .orient("bottom");
+
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            .orient("left")
+            .tickSize(-width)
+            .ticks(10);
+
+        var data = <%- JSON.stringify(utilizationChart) %>;
+        var svg = d3.select('#barchart').append('svg')
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        x.domain(data.map(function(d) { return d.label.min + ' - ' + d.label.max }))            
+        y.domain([0, d3.max(data, function(d) { return d.value }) + 1]);
+
+
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+          .selectAll('text')
+            .attr("transform", "rotate(-45)")
+            .attr("dx", "-0.5em")
+            .style("text-anchor", "end");
+
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+          .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("dy", "-3em")
+            .style("text-anchor", "end")
+            .text("Utilization (%)");
+
+
+        svg.selectAll(".bar")
+            .data(data)
+          .enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d, i) { return x(d.label.min + ' - ' + d.label.max) })
+            .attr("width", x.rangeBand())
+            .attr("y", function(d) { return y(d.value); })
+            .attr("height", function(d) { return height - y(d.value); })
+            .style("fill", "#25ad5c");
+
+
+      };
+
+      renderBarChart();
+
+    </script>
+  </body>
+</html>
