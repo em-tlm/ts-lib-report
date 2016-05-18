@@ -120,22 +120,36 @@
       text-align: right;
     }
 
+    .d3axislabel {
+      border-bottom: 1px solid #ddd;
+    }
+
   </style>
   <body>
     <div class="report-wrapper vspace">
       <div class="row vspace">
         <div class="col-xs-8 vspace">
-          <h1>Utilization Report</h1>
+          <h1>Utilization Estimates</h1>
           <div>
-            <p>Utilization and analytics data of <%= meta.instrument %></p>
+            <% var devicesLength = 0; 
+                for(var i in instruments) {
+                  for(var j in instruments[i].devices) {
+                    devicesLength++;
+                  };
+                }
+            %>
+            <p>Fleetwide utilization and analytics data of <strong class="text-operating"><%= devicesLength %></strong> instruments</p>
             <p><strong><%= meta.dateRange %></strong></p>
             <p><strong class="text-operating">Between 8AM and 6PM</strong></p>
           </div>
         </div>
-        <div class="col-xs-4">
-          <p class="text-small">Date Range: <%= meta.dateRange %></p>
-          <p class="text-small">Reporting Device: <%= meta.reportingDevice %></p>
-          <p class="text-small">Report Generated: <%= meta.generationTimestamp %></p>
+        <div class="col-xs-4 vspace">
+          <img src="../demo/images/util_logo.png" class="img-fill">
+          <div>
+            <p class="text-small">Date Range: <%= meta.dateRange %></p>
+            <p class="text-small">Reporting Device: <%= meta.reportingDevice %></p>
+            <p class="text-small">Report Generated: <%= meta.generationTimestamp %></p>
+          </div>
         </div>
       </div>
       <div class="row vspace">
@@ -173,7 +187,11 @@
           </div>         
           <div class="col-xs-12">
             <div class="row">
-              <div class="col-xs-2 col-xs-offset-10 text-center"><h3>in use (hrs)</h3></div>
+              <div class="col-xs-12" style="position: relative;">
+                <h3 style="position: absolute; left: 111px;">Usage (%)</h3>
+                <div class="d3axislabel"></div>
+                <h3 style="position: absolute; right: 25px; top: 0;">in use (hrs)</h3>
+              </div>
             </div>
             <% for (var j = 0; j < instrument.devices.length; j++) { %>
               <div class="row">
@@ -258,7 +276,9 @@
                             .rangeRoundBands([0, height], .1),
                         xAxis = d3.svg.axis()
                             .scale(xScale)
-                            .orient('bottom'),
+                            .tickSize(4, 0)
+                            .orient('bottom')
+                            .tickFormat(""),
                         yAxis = d3.svg.axis()
                             .scale(yScale)
                             .orient('left'),
@@ -288,21 +308,6 @@
                         })
                             .attr('width', function (d) {
                             return xScale(d.x);
-                        })
-                            .on('mouseover', function (d) {
-                            var xPos = parseFloat(d3.select(this).attr('x')) / 2 + width / 2;
-                            var yPos = parseFloat(d3.select(this).attr('y')) + yScale.rangeBand() / 2;
-
-                            d3.select('#tooltip')
-                                .style('left', xPos + 'px')
-                                .style('top', yPos + 'px')
-                                .select('#value')
-                                .text(d.x);
-
-                            d3.select('#tooltip').classed('hidden', false);
-                        })
-                            .on('mouseout', function () {
-                            d3.select('#tooltip').classed('hidden', true);
                         })
 
                         svg.append('g')
@@ -355,5 +360,40 @@
         <div class="col-xs-3"><img src="../demo/images/util_logo.png" class="img-fill"></div>
       </div>
     </div>
+    <script class="text/javascript">
+      (function(){
+
+
+        var margin = {
+            top: 17,
+            left: 148,
+            right: 24,
+            bottom: 5
+        };
+
+        var width = 500 - margin.left - margin.right;
+
+        var height = 15 - margin.top - margin.bottom;
+
+        var x = d3.scale.ordinal()
+            .domain([0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100])
+            .rangePoints([0, width]);
+
+        var xAxis = d3.svg.axis()
+            .scale(x)
+            .tickValues(x.domain().filter(function(d, i) { return !(i % 2); }))
+            .orient("top");
+
+        var svg = d3.selectAll(".d3axislabel").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        svg.append("g")
+            .attr("class", "axis x-axis")
+            .call(xAxis);
+      })()
+    </script>
   </body>
 </html>
