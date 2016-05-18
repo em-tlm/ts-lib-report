@@ -60,6 +60,7 @@ exports.createPdf = function(file, options) {
             return Q.delay(options.waitBeforeRendering);
         })
         .then(function() {
+            console.log(sitepage.render(file));
             return sitepage.render(file);
         }).then(function() {
             if (fs.existsSync(file)) {

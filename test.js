@@ -102,7 +102,7 @@ tsReport.createPdf('output/utilizationSingle.pdf', {
     template: 'demo/utilizationSingle.ejs',
     outputHtml: true,
     htmlPath: 'output/utilizationSingle.html',
-    data: require('./seed.js'),
+    data: require('./seed.js').single,
     dimension: {
         marginInInch: 0,
         dpi: 72
@@ -191,3 +191,19 @@ tsReport.createPdf('output/cssTemplate.pdf', {
 }, function(err) {
     console.log(err);
 });
+
+tsReport.createPdf('output/utilizationFleetwide.pdf', {
+    template: 'demo/utilizationFleetwide.ejs',
+    outputHtml: true,
+    htmlPath: 'output/utilizationFleetwide.html',
+    data: require('./seed.js').fleetwide,
+    dimension: {
+        marginInInch: 0,
+        dpi: 72
+    }    
+}).then(function(file) {
+    console.log(file);
+}, function(err) {
+    console.log(err);
+});
+
