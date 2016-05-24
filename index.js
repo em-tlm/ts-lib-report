@@ -92,7 +92,7 @@ function ejs2html(path, data) {
         if (err) { deferred.reject(err); }
         var ejs_str = text;
         var html = ejs.render(ejs_str, data);
-        deferred.resolve(html);
+        setTimeout(function(){deferred.resolve(html);}, 1000);
     });
     return deferred.promise;
 }
