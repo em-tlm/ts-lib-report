@@ -1077,8 +1077,8 @@ table {
   margin-bottom: 0;
 }
 .vspace-large > * {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 .vspace-large > a {
   margin-top: 0;
@@ -1101,16 +1101,16 @@ table {
   margin-bottom: 0;
 }
 .vspace-large > * {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 .vspace-large > a {
   margin-top: 0;
   margin-bottom: 0;
 }
 .vspace-xlarge > * {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 .vspace-xlarge > a {
   margin-top: 0;
@@ -1156,4 +1156,12 @@ table {
 
 .img-fill {
   width: 100%;
+}
+
+.m-t {
+  margin-top: 1rem;
+}
+
+.m-b {
+  margin-bottom: 1rem;
 }

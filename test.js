@@ -97,23 +97,6 @@ tsReport.createPdf('output/time.pdf', {
     console.log(err);
 });
 
-
-tsReport.createPdf('output/utilizationSingle.pdf', {
-    template: 'demo/utilizationSingle.ejs',
-    outputHtml: true,
-    htmlPath: 'output/utilizationSingle.html',
-    data: require('./seed.js').single,
-    dimension: {
-        marginInInch: 0,
-        dpi: 72
-    }    
-}).then(function(file) {
-    console.log(file);
-}, function(err) {
-    console.log(err);
-});
-
-
 tsReport.createPdf('output/pie.pdf', {
     template: 'demo/usageReportPieTemplate.ejs',
     outputHtml: true,
@@ -192,6 +175,23 @@ tsReport.createPdf('output/cssTemplate.pdf', {
     console.log(err);
 });
 
+
+tsReport.createPdf('output/utilizationSingle.pdf', {
+    template: 'demo/utilizationSingle.ejs',
+    outputHtml: true,
+    htmlPath: 'output/utilizationSingle.html',
+    data: require('./seed.js').single,
+    dimension: {
+        marginInInch: 0,
+        dpi: 70
+    }    
+}).then(function(file) {
+    console.log(file);
+}, function(err) {
+    console.log(err);
+});
+
+
 tsReport.createPdf('output/utilizationFleetwide.pdf', {
     template: 'demo/utilizationFleetwide.ejs',
     outputHtml: true,
@@ -199,7 +199,7 @@ tsReport.createPdf('output/utilizationFleetwide.pdf', {
     data: require('./seed.js').fleetwide,
     dimension: {
         marginInInch: 0,
-        dpi: 72
+        dpi: 70
     }    
 }).then(function(file) {
     console.log(file);
