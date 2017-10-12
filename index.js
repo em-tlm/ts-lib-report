@@ -2,7 +2,7 @@ var path = require('path');
 var fs = require('fs');
 var ejs = require('ejs');
 var phantom = require('phantom');
-var Q = require('q');
+var Promise = require('bluebird');
 var lodash = require('lodash');
 
 exports.createPdf = function(file, options) {
@@ -49,7 +49,7 @@ exports.createPdf = function(file, options) {
         })
         .then(function(page) {
             sitepage = page;
-            return Q.all(lodash.map(phantomOpts, function(value, key) {
+            return Promise.all(lodash.map(phantomOpts, function(value, key) {
                 return page.property(key, value);
             }));
         }).then(function() {
@@ -57,7 +57,7 @@ exports.createPdf = function(file, options) {
                 content, 'file://' + html_path);
         })
         .then(function() {
-            return Q.delay(options.waitBeforeRendering);
+            return Promise.delay(options.waitBeforeRendering);
         })
         .then(function() {
             console.log(sitepage.render(file));
@@ -66,10 +66,10 @@ exports.createPdf = function(file, options) {
             if (fs.existsSync(file)) {
                 return file;
             } else {
-                return Q.reject(new Error('Render failed: ' + file));
+                return Promise.reject(new Error('Render failed: ' + file));
             }
         })
-        .fin(function() {
+        .finally(function() {
             phInstance && phInstance.exit();
         });
 };
@@ -87,12 +87,6 @@ var calDimension = function(dimension) {
 };
 
 function ejs2html(path, data) {
-    var deferred = Q.defer();
-    fs.readFile(path, 'utf8', function(err, text) {
-        if (err) { deferred.reject(err); }
-        var ejs_str = text;
-        var html = ejs.render(ejs_str, data);
-        setTimeout(function(){deferred.resolve(html);}, 1000);
-    });
-    return deferred.promise;
+  return Promise.promisify(fs.readFile, { context: fs })(path, 'utf8')
+    .then(text => ejs.render(text, data));
 }

@@ -4,7 +4,7 @@ ts-report is a module for create pdf from ejs template.
 
 ## Installation
 ```sh
-$ npm install tetrascience/ts-report --save
+$ npm install tetrascience/ts-lib-report --save
 ```
 
 ## Usage

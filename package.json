@@ -1,8 +1,9 @@
 {
   "name": "ts-report",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "pdf module",
   "dependencies": {
+    "bluebird": "^3.5.1",
     "body-parser": "^1.15.1",
     "ejs": ">=2.3.4",
     "lodash": "^4.9.0",
